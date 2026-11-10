@@ -10,11 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Galeria ARKET no mundo da Jéssika: tela nude, tinta oliva, painel oliva invertido, dourado só no detalhe */
+  /* Galeria ARKET no mundo da Jéssika: verde musgo como cor da marca em faixas inteiras, nude entre elas, dourado só no detalhe */
   --nude:#F5F0EA;        /* tela da página */
   --papel:#FBF8F4;       /* superfícies levemente mais claras */
   --tinta:#23251C;       /* texto principal, oliva quase preto */
-  --oliva:#4B4F31;       /* painel invertido e botão principal */
+  --musgo:#4E5534;       /* verde musgo: cor principal da marca, painéis e botões */
+  --musgo-escuro:#3D4329; /* hover e detalhes sobre o musgo */
+  --salvia:#CDCBB0;      /* texto secundário sobre o musgo */
   --champanhe:#A88553;   /* dourado: logo e filetes, com parcimônia */
   --linho:#E2D9CD;       /* filetes e bordas */
   --nevoa:#6F6A5F;       /* texto secundário */
@@ -36,11 +38,11 @@ a{color:inherit}
 :focus-visible{outline:1px solid var(--tinta);outline-offset:3px}
 
 /* etiqueta de museu */
-.etq{font-family:var(--f-etiqueta);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--nevoa);font-weight:500}
+.etq{font-family:var(--f-etiqueta);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--musgo);font-weight:500}
 .serif{font-family:var(--f-display);font-weight:400;letter-spacing:-.005em;text-wrap:balance;overflow-wrap:break-word}
 
 /* faixa de aviso */
-.aviso{font-family:var(--f-corpo);font-size:13px;letter-spacing:.01em;text-align:center;padding:9px var(--gutter);background:var(--papel)}
+.aviso{font-family:var(--f-corpo);font-size:13px;letter-spacing:.01em;text-align:center;padding:9px var(--gutter);background:var(--musgo);color:var(--papel)}
 .aviso a{text-decoration-color:var(--champanhe);text-underline-offset:3px}
 
 /* cabeçalho */
@@ -58,17 +60,22 @@ nav a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-
 /* botões */
 .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-corpo);font-size:14px;padding:13px 24px;border-radius:var(--raio);text-decoration:none;border:1px solid var(--tinta);color:var(--tinta);background:transparent;cursor:pointer;transition:background .2s,color .2s}
 .btn:hover{background:var(--tinta);color:var(--nude)}
-.btn.cheio{background:var(--oliva);border-color:var(--oliva);color:var(--papel)}
-.btn.cheio:hover{background:var(--tinta);border-color:var(--tinta)}
+.btn.cheio{background:var(--musgo);border-color:var(--musgo);color:var(--papel)}
+.btn.cheio:hover{background:var(--musgo-escuro);border-color:var(--musgo-escuro)}
 .btns{display:flex;flex-wrap:wrap;gap:12px}
 
 /* capa */
 .capa{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);border-bottom:1px solid var(--linho);max-width:1440px;margin:0 auto}
-.capa-txt{padding:clamp(40px,6vw,96px) var(--gutter);display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.capa-txt{padding:clamp(40px,6vw,96px) var(--gutter);display:flex;flex-direction:column;justify-content:space-between;gap:48px;background:var(--musgo);color:var(--papel)}
+.capa-txt .etq{color:var(--salvia)}
+.capa-txt .btn{border-color:var(--papel);color:var(--papel)}
+.capa-txt .btn:hover{background:var(--papel);color:var(--musgo)}
+.capa-txt .btn.cheio{background:var(--papel);color:var(--musgo)}
+.capa-txt .btn.cheio:hover{background:transparent;color:var(--papel)}
 .capa h1{font-size:clamp(34px,3.7vw,56px);line-height:1.1;max-width:13em}
-.capa p.lead{max-width:30em;margin-top:28px;font-size:17px;color:var(--tinta)}
+.capa p.lead{max-width:30em;margin-top:28px;font-size:17px;color:#E9E6D6}
 .capa .btns{margin-top:36px}
-.capa-dados{display:grid;grid-template-columns:repeat(3,auto);gap:12px 32px;justify-content:start;border-top:1px solid var(--linho);padding-top:20px}
+.capa-dados{display:grid;grid-template-columns:repeat(3,auto);gap:12px 32px;justify-content:start;border-top:1px solid rgba(251,248,244,.25);padding-top:20px}
 .capa-dados dt{margin-bottom:4px}
 .capa-dados dd{font-size:14px}
 .capa-fotos{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--linho)}
@@ -96,7 +103,7 @@ section{padding:var(--secao) 0}
 .colecao{border-bottom:1px solid var(--linho)}
 .colecao summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:72px minmax(0,1.1fr) minmax(0,1.6fr) 90px;gap:24px;align-items:baseline;padding:26px 0}
 .colecao summary::-webkit-details-marker{display:none}
-.colecao summary:hover .c-nome{color:var(--oliva)}
+.colecao summary:hover .c-nome{color:var(--musgo)}
 .c-pag{font-family:var(--f-etiqueta);font-size:12px;font-weight:500;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--champanhe)}
 .c-nome{font-family:var(--f-display);font-size:clamp(26px,2.8vw,40px);line-height:1.05;transition:color .2s}
 .c-prot{font-size:14px;color:var(--nevoa)}
@@ -113,18 +120,18 @@ section{padding:var(--secao) 0}
 .prot.sem-foto{border-top:1px solid var(--linho);padding-top:16px}
 
 /* banda do método */
-.metodo{background:var(--oliva);color:var(--papel);padding:0}
+.metodo{background:var(--musgo);color:var(--papel);padding:0}
 .metodo-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);max-width:1440px;margin:0 auto}
 .metodo-grid > img{width:100%;height:100%;object-fit:cover;min-height:520px}
 .metodo-txt{padding:clamp(48px,7vw,104px) var(--gutter);display:flex;flex-direction:column;gap:28px;justify-content:center}
-.metodo .etq{color:#CFC6A9}
+.metodo .etq{color:var(--salvia)}
 .metodo h2{font-size:clamp(32px,3.8vw,56px);line-height:1.06;max-width:15em}
 .metodo p{max-width:36em;color:#E7E2D2;font-size:17px}
 .pilares{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(251,248,244,.25);margin-top:12px}
 .pilares div{padding:18px 16px 0 0;font-size:14px;color:#E7E2D2}
 .pilares div + div{border-left:1px solid rgba(251,248,244,.25);padding-left:16px}
 .metodo .btn{border-color:var(--papel);color:var(--papel);align-self:flex-start}
-.metodo .btn:hover{background:var(--papel);color:var(--oliva)}
+.metodo .btn:hover{background:var(--papel);color:var(--musgo)}
 
 /* antes e depois */
 .casos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
@@ -144,11 +151,12 @@ section{padding:var(--secao) 0}
 .casos-nota p{max-width:30em}
 
 /* parcelamento */
-.parcela{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;border-top:1px solid var(--tinta);border-bottom:1px solid var(--tinta);padding:40px 0;align-items:center}
+.parcela{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;background:var(--musgo);color:var(--papel);padding:clamp(32px,4vw,56px);align-items:center}
+.parcela .num{color:var(--champanhe)}
 .parcela .num{font-family:var(--f-display);font-size:clamp(72px,10vw,150px);line-height:.9;letter-spacing:-.04em}
 .parcela .num span{font-size:.36em;letter-spacing:0}
 .parcela p{max-width:34em;font-size:17px}
-.parcela p + p{margin-top:12px;font-size:14px;color:var(--nevoa)}
+.parcela p + p{margin-top:12px;font-size:14px;color:var(--salvia)}
 
 /* agendar */
 .agendar{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,96px)}
@@ -157,21 +165,23 @@ section{padding:var(--secao) 0}
 .contatos{border-top:1px solid var(--linho)}
 .contatos > div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--linho);font-size:15px}
 .contatos a{text-underline-offset:3px;text-decoration-thickness:1px}
-.citacao{font-family:var(--f-display);font-size:clamp(20px,2vw,26px);line-height:1.35;color:var(--oliva);margin-top:40px;max-width:24em}
+.citacao{font-family:var(--f-display);border-left:2px solid var(--musgo);padding-left:20px;font-size:clamp(20px,2vw,26px);line-height:1.35;color:var(--musgo);margin-top:40px;max-width:24em}
 
-footer{border-top:1px solid var(--linho);padding:48px 0 32px;margin-top:var(--secao)}
+footer{background:var(--musgo);color:var(--papel);padding:64px 0 32px;margin-top:var(--secao)}
+footer .etq,footer .rodape h4{color:var(--salvia)}
+footer .marca .nome small{color:var(--champanhe)}
 .rodape{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
 .rodape h4{font-family:var(--f-etiqueta);font-weight:500;letter-spacing:.14em;font-size:11px;text-transform:uppercase;margin-bottom:14px;color:var(--nevoa)}
 .rodape ul{list-style:none;display:grid;gap:8px;font-size:14px}
 .rodape a{text-decoration:none}
 .rodape a:hover{text-decoration:underline}
-.credito{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--linho)}
+.credito{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid rgba(251,248,244,.2)}
 
 /* cartão flutuante (o "membership card" da ARKET) */
-.flutua{position:fixed;right:20px;bottom:20px;z-index:30;width:300px;background:var(--oliva);color:var(--papel);padding:22px}
+.flutua{position:fixed;right:20px;bottom:20px;z-index:30;width:300px;background:var(--musgo);color:var(--papel);padding:22px}
 .flutua p.t{font-family:var(--f-display);font-size:21px;line-height:1.2;margin-bottom:8px}
 .flutua p.s{font-size:13px;opacity:.82;margin-bottom:16px}
-.flutua .btn{width:100%;border-color:var(--papel);color:var(--oliva);background:var(--papel)}
+.flutua .btn{width:100%;border-color:var(--papel);color:var(--musgo);background:var(--papel)}
 .flutua .btn:hover{background:transparent;color:var(--papel)}
 .flutua .fechar{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--papel);font-size:20px;line-height:1;cursor:pointer;padding:4px}
 .flutua[hidden]{display:none}
@@ -569,7 +579,7 @@ footer{border-top:1px solid var(--linho);padding:48px 0 32px;margin-top:var(--se
     <div class="rodape">
       <div>
         <a class="marca" href="#topo"><span class="js">JS</span><span class="nome">JESSIKA SANTOS<small>BEAUTY</small></span></a>
-        <p style="margin-top:16px;max-width:26em;font-size:14px;color:var(--nevoa)">Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP.</p>
+        <p style="margin-top:16px;max-width:26em;font-size:14px;color:var(--salvia)">Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP.</p>
       </div>
       <div>
         <h4>Sobrancelhas e olhar</h4>
