@@ -244,8 +244,6 @@ footer .marca .nome small{color:var(--champanhe)}
 .estudio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:center}
 .video-box{position:relative;background:var(--musgo);aspect-ratio:9/16;max-height:720px;justify-self:start;width:100%;max-width:420px;overflow:hidden}
 .video-box video{width:100%;height:100%;object-fit:cover;display:block}
-.som{position:absolute;right:12px;bottom:12px;font-family:var(--f-corpo);font-size:13px;padding:8px 14px;border-radius:var(--raio);border:1px solid var(--papel);background:rgba(35,37,28,.45);color:var(--papel);cursor:pointer}
-.som:hover{background:var(--papel);color:var(--musgo)}
 .estudio-txt h2{font-size:clamp(32px,3.6vw,52px);line-height:1.08;margin:14px 0 20px;max-width:14em}
 .estudio-txt > p{max-width:34em;font-size:17px}
 .passos{list-style:none;counter-reset:passo;margin:32px 0;border-top:1px solid var(--linho);max-width:40em}
@@ -340,7 +338,6 @@ footer .marca .nome small{color:var(--champanhe)}
     <div class="wrap estudio">
       <figure class="video-box">
         <video id="videoEstudio" src="video/estudio.mp4" poster="img/video-capa.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cliente mostrando o resultado no estúdio, em frente ao logo Jéssika Santos Beauty"></video>
-        <button class="som" id="somBtn" type="button" aria-pressed="false">Ativar som</button>
       </figure>
       <div class="estudio-txt">
         <p class="etq">Por dentro do estúdio</p>
@@ -691,13 +688,8 @@ footer .marca .nome small{color:var(--champanhe)}
 
 <script>
   (function () {
-    var v = document.getElementById('videoEstudio'), b = document.getElementById('somBtn');
-    if (!v || !b) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
-    b.addEventListener('click', function () {
-      v.muted = !v.muted; if (!v.muted) { v.play().catch(function(){}); }
-      b.textContent = v.muted ? 'Ativar som' : 'Desativar som'; b.setAttribute('aria-pressed', v.muted ? 'false' : 'true');
-    });
+    var v = document.getElementById('videoEstudio');
+    if (v && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
   })();
 </script>
 <script>
