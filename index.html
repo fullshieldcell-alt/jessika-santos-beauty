@@ -49,6 +49,8 @@ a{color:inherit}
 header{position:sticky;top:0;z-index:20;background:var(--nude);border-bottom:1px solid var(--linho)}
 .barra{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px;padding:0 var(--gutter);max-width:1440px;margin:0 auto}
 .marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icone{width:40px;height:auto}
+.logo-rodape{width:220px;height:auto}
 .marca .js{font-family:var(--f-display);font-size:30px;line-height:1;color:var(--champanhe);letter-spacing:-.06em}
 .marca .nome{font-family:var(--f-display);font-size:13px;letter-spacing:.24em;line-height:1.25}
 .marca .nome small{display:block;font-size:9px;letter-spacing:.42em;color:var(--champanhe)}
@@ -136,8 +138,8 @@ section{padding:var(--secao) 0}
 /* antes e depois */
 .casos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .caso.largo{grid-column:span 2}
-.comparar{position:relative;aspect-ratio:1;overflow:hidden;background:var(--papel);user-select:none;touch-action:pan-y}
-.caso.largo .comparar{aspect-ratio:2/1}
+.comparar{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--papel);user-select:none;touch-action:pan-y}
+.caso.largo .comparar{aspect-ratio:3/2}
 .comparar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .comparar .depois{clip-path:inset(0 0 0 var(--pos,50%))}
 .comparar .linha{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:1px;background:var(--papel);pointer-events:none}
@@ -147,7 +149,7 @@ section{padding:var(--secao) 0}
 .comparar .rot.a{left:10px}.comparar .rot.d{right:10px}
 .caso h3{font-family:var(--f-display);font-weight:400;font-size:22px;margin-top:14px}
 .caso p{font-size:14px;color:var(--nevoa)}
-.casos-nota{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:12px;font-size:15px;color:var(--nevoa);border-top:1px solid var(--linho);padding-top:20px}
+.casos-nota{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;font-size:15px;color:var(--nevoa);border-top:1px solid var(--linho);padding-top:20px}
 .casos-nota p{max-width:30em}
 
 /* parcelamento */
@@ -224,7 +226,7 @@ footer .marca .nome small{color:var(--champanhe)}
 <header>
   <div class="barra">
     <a class="marca" href="#topo" aria-label="Jéssika Santos Beauty, início">
-      <span class="js">JS</span>
+      <img class="logo-icone" src="img/logo-icone.png" alt="" width="40" height="40">
       <span class="nome">JESSIKA SANTOS<small>BEAUTY</small></span>
     </a>
     <nav id="nav" aria-label="Principal">
@@ -264,11 +266,11 @@ footer .marca .nome small{color:var(--champanhe)}
     </div>
     <div class="capa-fotos">
       <figure>
-        <img src="img/retrato.jpg" alt="Jéssika Santos de blazer branco, com a mão apoiada no queixo">
+        <img src="img/retrato.jpg" alt="Jéssika Santos de blazer verde, de braços cruzados">
       </figure>
       <figure>
-        <img src="img/brow-collection.jpg" alt="Close de sobrancelha após o Design Estrutural Exclusivo">
-        <figcaption class="etq">Caso real, Brow Collection</figcaption>
+        <img src="img/estudio.jpg" alt="Cliente no estúdio, em frente à parede verde com o logo Jéssika Santos Beauty">
+        <figcaption class="etq">O estúdio, em Tambaú</figcaption>
       </figure>
     </div>
   </section>
@@ -316,7 +318,7 @@ footer .marca .nome small{color:var(--champanhe)}
             <p class="c-intro">Sobrancelhas que revelam sua melhor versão. Protocolos que unem técnica, ciência e sensibilidade para harmonizar o olhar.</p>
             <div class="protocolos">
               <article class="prot">
-                <figure><img src="img/olhar-design.jpg" alt="Sobrancelhas após o Design Estrutural Exclusivo" loading="lazy"></figure>
+                <figure><img src="img/brow-design.jpg" alt="Sobrancelha após o Design Estrutural Exclusivo" loading="lazy"></figure>
                 <p class="etq">A assinatura da casa</p>
                 <h3>Design Estrutural Exclusivo™</h3>
                 <p>Diferente das técnicas que seguem moldes prontos e removem muitos pelos, preserva ao máximo a estrutura natural. Cada fio é analisado individualmente.</p>
@@ -466,7 +468,7 @@ footer .marca .nome small{color:var(--champanhe)}
 
   <section class="metodo" id="metodo">
     <div class="metodo-grid">
-      <img src="img/olhar-design.jpg" alt="Close dos olhos e sobrancelhas de uma cliente após o design" loading="lazy">
+      <img src="img/metodo.jpg" alt="Close de sobrancelhas e cílios de uma cliente após o atendimento" loading="lazy">
       <div class="metodo-txt">
         <p class="etq">Design Estrutural Exclusivo™</p>
         <h2 class="serif">Mais do que desenhar sobrancelhas, meu método respeita quem você é.</h2>
@@ -489,51 +491,71 @@ footer .marca .nome small{color:var(--champanhe)}
         <p>Resultados de clientes do estúdio. Arraste a linha sobre cada foto para comparar.</p>
       </div>
       <div class="casos">
-        <figure class="caso">
+        <figure class="caso largo">
           <div class="comparar">
-            <img src="img/ad-brow-antes.jpg" alt="Sobrancelhas antes do Brow Revival">
-            <img class="depois" src="img/ad-brow-depois.jpg" alt="Sobrancelhas depois do Brow Revival">
+            <img src="img/ad-design-antes.jpg" alt="Sobrancelha antes" loading="lazy">
+            <img class="depois" src="img/ad-design-depois.jpg" alt="Sobrancelha depois" loading="lazy">
             <span class="linha"></span>
             <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
-            <input type="range" min="0" max="100" value="50" id="cmp-brow" aria-label="Comparar antes e depois do Brow Revival">
+            <input type="range" min="0" max="100" value="50" id="cmp-design" aria-label="Comparar antes e depois: Design Estrutural Exclusivo™">
           </div>
-          <figcaption><h3>Brow Revival™</h3><p>Design e revitalização de sobrancelhas</p></figcaption>
+          <figcaption><h3>Design Estrutural Exclusivo™</h3><p>Desenho que respeita a estrutura natural dos fios</p></figcaption>
         </figure>
         <figure class="caso">
           <div class="comparar">
-            <img src="img/ad-lip-antes.jpg" alt="Lábios antes do Lip Bloom">
-            <img class="depois" src="img/ad-lip-depois.jpg" alt="Lábios depois do Lip Bloom">
+            <img src="img/ad-essence-antes.jpg" alt="Sobrancelhas antes" loading="lazy">
+            <img class="depois" src="img/ad-essence-depois.jpg" alt="Sobrancelhas depois" loading="lazy">
             <span class="linha"></span>
             <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
-            <input type="range" min="0" max="100" value="50" id="cmp-lip" aria-label="Comparar antes e depois do Lip Bloom">
+            <input type="range" min="0" max="100" value="50" id="cmp-essence" aria-label="Comparar antes e depois: Brow Essence™">
           </div>
-          <figcaption><h3>Lip Bloom™</h3><p>Revitalização labial com cor suave</p></figcaption>
+          <figcaption><h3>Brow Essence™</h3><p>Fios alinhados com brow lamination</p></figcaption>
+        </figure>
+        <figure class="caso">
+          <div class="comparar">
+            <img src="img/ad-lip-antes.jpg" alt="Lábios antes" loading="lazy">
+            <img class="depois" src="img/ad-lip-depois.jpg" alt="Lábios depois" loading="lazy">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-lip" aria-label="Comparar antes e depois: Lip Bloom™">
+          </div>
+          <figcaption><h3>Lip Bloom™</h3><p>Hidratação com cor suave</p></figcaption>
         </figure>
         <figure class="caso largo">
           <div class="comparar">
-            <img src="img/ad-skin-antes.jpg" alt="Pele com acne antes do microagulhamento" style="object-position:30% 50%">
-            <img class="depois" src="img/ad-skin-depois.jpg" alt="Pele depois do microagulhamento" style="object-position:30% 50%">
+            <img src="img/ad-lash-antes.jpg" alt="Cílios antes" loading="lazy">
+            <img class="depois" src="img/ad-lash-depois.jpg" alt="Cílios depois" loading="lazy">
             <span class="linha"></span>
             <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
-            <input type="range" min="0" max="100" value="50" id="cmp-skin" aria-label="Comparar antes e depois do microagulhamento facial">
+            <input type="range" min="0" max="100" value="50" id="cmp-lash" aria-label="Comparar antes e depois: Lash Ascend™">
           </div>
-          <figcaption><h3>Microagulhamento facial</h3><p>Textura e marcas de acne</p></figcaption>
+          <figcaption><h3>Lash Ascend™</h3><p>Cílios elevados, sem extensão</p></figcaption>
         </figure>
-        <figure class="caso largo">
+        <figure class="caso">
           <div class="comparar">
-            <img src="img/ad-laser-antes.jpg" alt="Axila antes da depilação a laser">
-            <img class="depois" src="img/ad-laser-depois.jpg" alt="Axila depois da depilação a laser">
+            <img src="img/ad-pele-antes.jpg" alt="Rosto antes" loading="lazy">
+            <img class="depois" src="img/ad-pele-depois.jpg" alt="Rosto depois" loading="lazy">
             <span class="linha"></span>
             <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
-            <input type="range" min="0" max="100" value="50" id="cmp-laser" aria-label="Comparar antes e depois do Laser Silk">
+            <input type="range" min="0" max="100" value="50" id="cmp-pele" aria-label="Comparar antes e depois: Pele">
           </div>
-          <figcaption><h3>Laser Silk™</h3><p>Depilação a laser</p></figcaption>
+          <figcaption><h3>Pele</h3><p>Protocolo facial: textura e viço</p></figcaption>
         </figure>
-        <div class="caso largo casos-nota">
-          <p>Cada resultado depende da avaliação individual da pele, dos fios e do histórico de cada cliente.</p>
-          <p>Tem mais casos nos destaques de Sobrancelhas, Lábios e Feedbacks do Instagram.</p>
-          <a class="btn" href="https://www.instagram.com/jessikasantosbeauty/">Ver no Instagram</a>
+        <figure class="caso">
+          <div class="comparar">
+            <img src="img/ad-hair-antes.jpg" alt="Couro cabeludo antes" loading="lazy">
+            <img class="depois" src="img/ad-hair-depois.jpg" alt="Couro cabeludo depois" loading="lazy">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-hair" aria-label="Comparar antes e depois: Hair Revive™">
+          </div>
+          <figcaption><h3>Hair Revive™</h3><p>Couro cabeludo após 2 sessões</p></figcaption>
+        </figure>
+        <div class="casos-nota">
+          <p>Fotos reais de clientes do estúdio. Cada resultado depende da avaliação individual da pele, dos fios e do histórico de cada pessoa.</p>
+          <a class="btn" href="https://www.instagram.com/jessikasantosbeauty/">Ver mais no Instagram</a>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -578,7 +600,7 @@ footer .marca .nome small{color:var(--champanhe)}
   <div class="wrap">
     <div class="rodape">
       <div>
-        <a class="marca" href="#topo"><span class="js">JS</span><span class="nome">JESSIKA SANTOS<small>BEAUTY</small></span></a>
+        <a href="#topo"><img class="logo-rodape" src="img/logo.png" alt="Jéssika Santos Beauty" width="220"></a>
         <p style="margin-top:16px;max-width:26em;font-size:14px;color:var(--salvia)">Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP.</p>
       </div>
       <div>
