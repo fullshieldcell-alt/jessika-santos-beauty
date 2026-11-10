@@ -7,7 +7,7 @@
 <meta name="description" content="Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP. Protocolos exclusivos de sobrancelhas, lábios, pele, laser e corpo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Galeria ARKET no mundo da Jéssika: tela nude, tinta oliva, painel oliva invertido, dourado só no detalhe */
@@ -20,7 +20,7 @@
   --nevoa:#6F6A5F;       /* texto secundário */
   --f-display:"Gilda Display", "Didot", Georgia, serif;
   --f-corpo:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --f-etiqueta:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-etiqueta:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
   --f-assinatura:"Monsieur La Doulaise", "Snell Roundhand", cursive;
   --raio:2px;
   --gutter:clamp(16px, 4vw, 48px);
@@ -36,11 +36,11 @@ a{color:inherit}
 :focus-visible{outline:1px solid var(--tinta);outline-offset:3px}
 
 /* etiqueta de museu */
-.etq{font-family:var(--f-etiqueta);font-size:11px;letter-spacing:-.02em;text-transform:uppercase;color:var(--nevoa);font-weight:400}
+.etq{font-family:var(--f-etiqueta);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--nevoa);font-weight:500}
 .serif{font-family:var(--f-display);font-weight:400;letter-spacing:-.005em;text-wrap:balance;overflow-wrap:break-word}
 
 /* faixa de aviso */
-.aviso{font-family:var(--f-etiqueta);font-size:12px;text-align:center;padding:9px var(--gutter);background:var(--papel)}
+.aviso{font-family:var(--f-corpo);font-size:13px;letter-spacing:.01em;text-align:center;padding:9px var(--gutter);background:var(--papel)}
 .aviso a{text-decoration-color:var(--champanhe);text-underline-offset:3px}
 
 /* cabeçalho */
@@ -97,10 +97,10 @@ section{padding:var(--secao) 0}
 .colecao summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:72px minmax(0,1.1fr) minmax(0,1.6fr) 90px;gap:24px;align-items:baseline;padding:26px 0}
 .colecao summary::-webkit-details-marker{display:none}
 .colecao summary:hover .c-nome{color:var(--oliva)}
-.c-pag{font-family:var(--f-etiqueta);font-size:12px;color:var(--champanhe)}
+.c-pag{font-family:var(--f-etiqueta);font-size:12px;font-weight:500;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--champanhe)}
 .c-nome{font-family:var(--f-display);font-size:clamp(26px,2.8vw,40px);line-height:1.05;transition:color .2s}
 .c-prot{font-size:14px;color:var(--nevoa)}
-.c-abrir{font-family:var(--f-etiqueta);font-size:11px;text-transform:uppercase;text-align:right;color:var(--tinta)}
+.c-abrir{font-family:var(--f-etiqueta);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-align:right;color:var(--tinta)}
 .colecao[open] .c-abrir .ab{display:none}
 .colecao:not([open]) .c-abrir .fe{display:none}
 .c-corpo{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;padding:0 0 40px}
@@ -161,7 +161,7 @@ section{padding:var(--secao) 0}
 
 footer{border-top:1px solid var(--linho);padding:48px 0 32px;margin-top:var(--secao)}
 .rodape{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
-.rodape h4{font-family:var(--f-etiqueta);font-weight:400;font-size:11px;text-transform:uppercase;margin-bottom:14px;color:var(--nevoa)}
+.rodape h4{font-family:var(--f-etiqueta);font-weight:500;letter-spacing:.14em;font-size:11px;text-transform:uppercase;margin-bottom:14px;color:var(--nevoa)}
 .rodape ul{list-style:none;display:grid;gap:8px;font-size:14px}
 .rodape a{text-decoration:none}
 .rodape a:hover{text-decoration:underline}
