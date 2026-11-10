@@ -239,6 +239,21 @@ footer .marca .nome small{color:var(--champanhe)}
   .capa-txt .etq,.capa h1,.capa p.lead,.capa .btns,.capa-dados,.capa-fotos figure,.capa-fotos img{animation:none}
   .anima .surge{opacity:1;transform:none}
 }
+
+/* vídeo do estúdio */
+.estudio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:center}
+.video-box{position:relative;background:var(--musgo);aspect-ratio:9/16;max-height:720px;justify-self:start;width:100%;max-width:420px;overflow:hidden}
+.video-box video{width:100%;height:100%;object-fit:cover;display:block}
+.som{position:absolute;right:12px;bottom:12px;font-family:var(--f-corpo);font-size:13px;padding:8px 14px;border-radius:var(--raio);border:1px solid var(--papel);background:rgba(35,37,28,.45);color:var(--papel);cursor:pointer}
+.som:hover{background:var(--papel);color:var(--musgo)}
+.estudio-txt h2{font-size:clamp(32px,3.6vw,52px);line-height:1.08;margin:14px 0 20px;max-width:14em}
+.estudio-txt > p{max-width:34em;font-size:17px}
+.passos{list-style:none;counter-reset:passo;margin:32px 0;border-top:1px solid var(--linho);max-width:40em}
+.passos li{counter-increment:passo;display:grid;grid-template-columns:40px 130px 1fr;gap:12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--linho);font-size:15px;color:var(--nevoa)}
+.passos li::before{content:counter(passo,decimal-leading-zero);font-family:var(--f-display);font-size:18px;color:var(--champanhe)}
+.passos li .etq{color:var(--tinta)}
+@media (max-width:1000px){.estudio{grid-template-columns:1fr}.video-box{justify-self:center}}
+@media (max-width:480px){.passos li{grid-template-columns:32px 1fr}.passos li .etq{grid-column:2}.passos li{row-gap:4px}}
 </style>
 </head>
 <body>
@@ -316,6 +331,27 @@ footer .marca .nome small{color:var(--champanhe)}
           <p>Ao longo do caminho, criei protocolos que carregam a identidade da minha marca. Mais do que procedimentos, quero oferecer acolhimento e um atendimento verdadeiramente humano, porque cada cliente merece se sentir única.</p>
         </div>
         <p class="assinatura" aria-label="Assinatura: Jéssika Santos">Jéssika Santos</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="estudio" style="padding-top:0">
+    <div class="wrap estudio">
+      <figure class="video-box">
+        <video id="videoEstudio" src="video/estudio.mp4" poster="img/video-capa.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cliente mostrando o resultado no estúdio, em frente ao logo Jéssika Santos Beauty"></video>
+        <button class="som" id="somBtn" type="button" aria-pressed="false">Ativar som</button>
+      </figure>
+      <div class="estudio-txt">
+        <p class="etq">Por dentro do estúdio</p>
+        <h2 class="serif">Cada cliente sai daqui se reconhecendo no espelho.</h2>
+        <p>O atendimento é feito com calma, em um espaço pensado para você se sentir em casa. Antes de qualquer procedimento, eu avalio sua pele, seus fios e o formato do seu rosto.</p>
+        <ol class="passos">
+          <li><span class="etq">Avaliação</span>Conversa sobre o que você deseja e análise da pele e dos fios.</li>
+          <li><span class="etq">Planejamento</span>Indicação do protocolo e do desenho que combinam com os seus traços.</li>
+          <li><span class="etq">Atendimento</span>Procedimento feito com técnica, produtos de qualidade e conforto.</li>
+          <li><span class="etq">Cuidados</span>Orientação para manter o resultado em casa.</li>
+        </ol>
+        <a class="btn cheio" href="https://wa.me/message/BMGJPKORBIFJM1">Agendar minha avaliação</a>
       </div>
     </div>
   </section>
@@ -653,12 +689,23 @@ footer .marca .nome small{color:var(--champanhe)}
 </aside>
 
 <script>
+  (function () {
+    var v = document.getElementById('videoEstudio'), b = document.getElementById('somBtn');
+    if (!v || !b) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }
+    b.addEventListener('click', function () {
+      v.muted = !v.muted; if (!v.muted) { v.play().catch(function(){}); }
+      b.textContent = v.muted ? 'Ativar som' : 'Desativar som'; b.setAttribute('aria-pressed', v.muted ? 'false' : 'true');
+    });
+  })();
+</script>
+<script>
   // movimento: revelar ao rolar, contador do 36x e varredura dos antes e depois
   (function () {
     var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduz || !('IntersectionObserver' in window)) return;
     document.documentElement.classList.add('anima');
-    var alvos = document.querySelectorAll('.cab-secao, .sobre > div, .prot, .caso, .metodo-txt > *, .parcela, .agendar > div, .contatos > div');
+    var alvos = document.querySelectorAll('.cab-secao, .sobre > div, .estudio > *, .prot, .caso, .metodo-txt > *, .parcela, .agendar > div, .contatos > div');
     alvos.forEach(function (el, i) {
       if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('surge'); el.style.transitionDelay = (i % 4) * 0.08 + 's'; }
     });
