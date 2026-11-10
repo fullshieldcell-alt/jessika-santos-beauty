@@ -253,7 +253,8 @@ footer .marca .nome small{color:var(--champanhe)}
 .passos li::before{content:counter(passo,decimal-leading-zero);font-family:var(--f-display);font-size:18px;color:var(--champanhe)}
 .passos li .etq{color:var(--tinta)}
 @media (max-width:1000px){.estudio{grid-template-columns:1fr}.video-box{justify-self:center}}
-@media (max-width:480px){.passos li{grid-template-columns:32px 1fr}.passos li .etq{grid-column:2}.passos li{row-gap:4px}}
+@media (max-width:600px){.passos li{grid-template-columns:32px 1fr;row-gap:4px}.passos li::before{grid-row:1/3}.passos li .etq,.passos li .desc{grid-column:2}}
+@media (max-width:760px){.assinatura{text-align:center;font-size:48px;padding:0 8px}}
 </style>
 </head>
 <body>
@@ -346,10 +347,10 @@ footer .marca .nome small{color:var(--champanhe)}
         <h2 class="serif">Cada cliente sai daqui se reconhecendo no espelho.</h2>
         <p>O atendimento é feito com calma, em um espaço pensado para você se sentir em casa. Antes de qualquer procedimento, eu avalio sua pele, seus fios e o formato do seu rosto.</p>
         <ol class="passos">
-          <li><span class="etq">Avaliação</span>Conversa sobre o que você deseja e análise da pele e dos fios.</li>
-          <li><span class="etq">Planejamento</span>Indicação do protocolo e do desenho que combinam com os seus traços.</li>
-          <li><span class="etq">Atendimento</span>Procedimento feito com técnica, produtos de qualidade e conforto.</li>
-          <li><span class="etq">Cuidados</span>Orientação para manter o resultado em casa.</li>
+          <li><span class="etq">Avaliação</span><span class="desc">Conversa sobre o que você deseja e análise da pele e dos fios.</span></li>
+          <li><span class="etq">Planejamento</span><span class="desc">Indicação do protocolo e do desenho que combinam com os seus traços.</span></li>
+          <li><span class="etq">Atendimento</span><span class="desc">Procedimento feito com técnica, produtos de qualidade e conforto.</span></li>
+          <li><span class="etq">Cuidados</span><span class="desc">Orientação para manter o resultado em casa.</span></li>
         </ol>
         <a class="btn cheio" href="https://wa.me/message/BMGJPKORBIFJM1">Agendar minha avaliação</a>
       </div>
