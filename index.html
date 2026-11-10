@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jéssika Santos Beauty</title>
+<meta name="description" content="Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP. Protocolos exclusivos de sobrancelhas, lábios, pele, laser e corpo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Galeria ARKET no mundo da Jéssika: tela nude, tinta oliva, painel oliva invertido, dourado só no detalhe */
+  --nude:#F5F0EA;        /* tela da página */
+  --papel:#FBF8F4;       /* superfícies levemente mais claras */
+  --tinta:#23251C;       /* texto principal, oliva quase preto */
+  --oliva:#4B4F31;       /* painel invertido e botão principal */
+  --champanhe:#A88553;   /* dourado: logo e filetes, com parcimônia */
+  --linho:#E2D9CD;       /* filetes e bordas */
+  --nevoa:#6F6A5F;       /* texto secundário */
+  --f-display:"Gilda Display", "Didot", Georgia, serif;
+  --f-corpo:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-etiqueta:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --f-assinatura:"Monsieur La Doulaise", "Snell Roundhand", cursive;
+  --raio:2px;
+  --gutter:clamp(16px, 4vw, 48px);
+  --secao:clamp(64px, 9vw, 120px);
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--nude);color:var(--tinta);font-family:var(--f-corpo);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--tinta);outline-offset:3px}
+
+/* etiqueta de museu */
+.etq{font-family:var(--f-etiqueta);font-size:11px;letter-spacing:-.02em;text-transform:uppercase;color:var(--nevoa);font-weight:400}
+.serif{font-family:var(--f-display);font-weight:400;letter-spacing:-.005em;text-wrap:balance;overflow-wrap:break-word}
+
+/* faixa de aviso */
+.aviso{font-family:var(--f-etiqueta);font-size:12px;text-align:center;padding:9px var(--gutter);background:var(--papel)}
+.aviso a{text-decoration-color:var(--champanhe);text-underline-offset:3px}
+
+/* cabeçalho */
+header{position:sticky;top:0;z-index:20;background:var(--nude);border-bottom:1px solid var(--linho)}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px;padding:0 var(--gutter);max-width:1440px;margin:0 auto}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca .js{font-family:var(--f-display);font-size:30px;line-height:1;color:var(--champanhe);letter-spacing:-.06em}
+.marca .nome{font-family:var(--f-display);font-size:13px;letter-spacing:.24em;line-height:1.25}
+.marca .nome small{display:block;font-size:9px;letter-spacing:.42em;color:var(--champanhe)}
+nav ul{display:flex;gap:32px;list-style:none}
+nav a{text-decoration:none;font-size:14px}
+nav a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.menu-btn{display:none;background:none;border:1px solid var(--tinta);border-radius:var(--raio);font:inherit;font-size:13px;padding:8px 14px;cursor:pointer;color:var(--tinta)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-corpo);font-size:14px;padding:13px 24px;border-radius:var(--raio);text-decoration:none;border:1px solid var(--tinta);color:var(--tinta);background:transparent;cursor:pointer;transition:background .2s,color .2s}
+.btn:hover{background:var(--tinta);color:var(--nude)}
+.btn.cheio{background:var(--oliva);border-color:var(--oliva);color:var(--papel)}
+.btn.cheio:hover{background:var(--tinta);border-color:var(--tinta)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* capa */
+.capa{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);border-bottom:1px solid var(--linho);max-width:1440px;margin:0 auto}
+.capa-txt{padding:clamp(40px,6vw,96px) var(--gutter);display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.capa h1{font-size:clamp(34px,3.7vw,56px);line-height:1.1;max-width:13em}
+.capa p.lead{max-width:30em;margin-top:28px;font-size:17px;color:var(--tinta)}
+.capa .btns{margin-top:36px}
+.capa-dados{display:grid;grid-template-columns:repeat(3,auto);gap:12px 32px;justify-content:start;border-top:1px solid var(--linho);padding-top:20px}
+.capa-dados dt{margin-bottom:4px}
+.capa-dados dd{font-size:14px}
+.capa-fotos{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--linho)}
+.capa-fotos figure{position:relative;overflow:hidden;background:var(--papel)}
+.capa-fotos img{width:100%;height:100%;object-fit:cover;min-height:560px}
+.capa-fotos figcaption{position:absolute;left:14px;bottom:12px;background:var(--papel);padding:4px 8px}
+
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--gutter)}
+section{padding:var(--secao) 0}
+.cab-secao{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:24px;align-items:end;margin-bottom:48px}
+.cab-secao h2{font-size:clamp(32px,3.6vw,52px);line-height:1.08}
+.cab-secao p{max-width:36em;color:var(--nevoa)}
+
+/* sobre */
+.sobre{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,96px);align-items:start}
+.sobre h2{font-size:clamp(32px,3.6vw,52px);line-height:1.08;margin-top:14px}
+.sobre .texto{columns:2 18em;column-gap:40px;font-size:16px}
+.sobre .texto p{margin-bottom:1em;break-inside:avoid}
+.assinatura{font-family:var(--f-assinatura);font-size:58px;line-height:1;color:var(--champanhe);margin-top:20px}
+.formacao{margin-top:32px;border-top:1px solid var(--linho)}
+.formacao div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--linho);font-size:14px}
+
+/* sumário das coleções */
+.sumario{border-top:1px solid var(--tinta)}
+.colecao{border-bottom:1px solid var(--linho)}
+.colecao summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:72px minmax(0,1.1fr) minmax(0,1.6fr) 90px;gap:24px;align-items:baseline;padding:26px 0}
+.colecao summary::-webkit-details-marker{display:none}
+.colecao summary:hover .c-nome{color:var(--oliva)}
+.c-pag{font-family:var(--f-etiqueta);font-size:12px;color:var(--champanhe)}
+.c-nome{font-family:var(--f-display);font-size:clamp(26px,2.8vw,40px);line-height:1.05;transition:color .2s}
+.c-prot{font-size:14px;color:var(--nevoa)}
+.c-abrir{font-family:var(--f-etiqueta);font-size:11px;text-transform:uppercase;text-align:right;color:var(--tinta)}
+.colecao[open] .c-abrir .ab{display:none}
+.colecao:not([open]) .c-abrir .fe{display:none}
+.c-corpo{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;padding:0 0 40px}
+.c-intro{grid-column:2;max-width:42em;font-size:17px;margin-bottom:28px}
+.protocolos{grid-column:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:32px 24px}
+.prot figure{background:var(--papel);margin-bottom:16px;aspect-ratio:3/4;overflow:hidden}
+.prot figure img{width:100%;height:100%;object-fit:cover}
+.prot h3{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.15;margin:6px 0 8px}
+.prot p{font-size:14px;color:var(--nevoa);max-width:32em}
+.prot.sem-foto{border-top:1px solid var(--linho);padding-top:16px}
+
+/* banda do método */
+.metodo{background:var(--oliva);color:var(--papel);padding:0}
+.metodo-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);max-width:1440px;margin:0 auto}
+.metodo-grid > img{width:100%;height:100%;object-fit:cover;min-height:520px}
+.metodo-txt{padding:clamp(48px,7vw,104px) var(--gutter);display:flex;flex-direction:column;gap:28px;justify-content:center}
+.metodo .etq{color:#CFC6A9}
+.metodo h2{font-size:clamp(32px,3.8vw,56px);line-height:1.06;max-width:15em}
+.metodo p{max-width:36em;color:#E7E2D2;font-size:17px}
+.pilares{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(251,248,244,.25);margin-top:12px}
+.pilares div{padding:18px 16px 0 0;font-size:14px;color:#E7E2D2}
+.pilares div + div{border-left:1px solid rgba(251,248,244,.25);padding-left:16px}
+.metodo .btn{border-color:var(--papel);color:var(--papel);align-self:flex-start}
+.metodo .btn:hover{background:var(--papel);color:var(--oliva)}
+
+/* antes e depois */
+.casos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.caso.largo{grid-column:span 2}
+.comparar{position:relative;aspect-ratio:1;overflow:hidden;background:var(--papel);user-select:none;touch-action:pan-y}
+.caso.largo .comparar{aspect-ratio:2/1}
+.comparar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.comparar .depois{clip-path:inset(0 0 0 var(--pos,50%))}
+.comparar .linha{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:1px;background:var(--papel);pointer-events:none}
+.comparar .linha::after{content:"";position:absolute;top:50%;left:-14px;width:28px;height:28px;margin-top:-14px;border:1px solid var(--papel);border-radius:50%;background:rgba(35,37,28,.25)}
+.comparar input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.comparar .rot{position:absolute;bottom:10px;background:var(--papel);padding:3px 7px;pointer-events:none}
+.comparar .rot.a{left:10px}.comparar .rot.d{right:10px}
+.caso h3{font-family:var(--f-display);font-weight:400;font-size:22px;margin-top:14px}
+.caso p{font-size:14px;color:var(--nevoa)}
+.casos-nota{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:12px;font-size:15px;color:var(--nevoa);border-top:1px solid var(--linho);padding-top:20px}
+.casos-nota p{max-width:30em}
+
+/* parcelamento */
+.parcela{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;border-top:1px solid var(--tinta);border-bottom:1px solid var(--tinta);padding:40px 0;align-items:center}
+.parcela .num{font-family:var(--f-display);font-size:clamp(72px,10vw,150px);line-height:.9;letter-spacing:-.04em}
+.parcela .num span{font-size:.36em;letter-spacing:0}
+.parcela p{max-width:34em;font-size:17px}
+.parcela p + p{margin-top:12px;font-size:14px;color:var(--nevoa)}
+
+/* agendar */
+.agendar{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,96px)}
+.agendar h2{font-size:clamp(36px,4.4vw,64px);line-height:1.04}
+.agendar .lead{margin:24px 0 32px;max-width:30em;font-size:17px}
+.contatos{border-top:1px solid var(--linho)}
+.contatos > div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--linho);font-size:15px}
+.contatos a{text-underline-offset:3px;text-decoration-thickness:1px}
+.citacao{font-family:var(--f-display);font-size:clamp(20px,2vw,26px);line-height:1.35;color:var(--oliva);margin-top:40px;max-width:24em}
+
+footer{border-top:1px solid var(--linho);padding:48px 0 32px;margin-top:var(--secao)}
+.rodape{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+.rodape h4{font-family:var(--f-etiqueta);font-weight:400;font-size:11px;text-transform:uppercase;margin-bottom:14px;color:var(--nevoa)}
+.rodape ul{list-style:none;display:grid;gap:8px;font-size:14px}
+.rodape a{text-decoration:none}
+.rodape a:hover{text-decoration:underline}
+.credito{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:20px;border-top:1px solid var(--linho)}
+
+/* cartão flutuante (o "membership card" da ARKET) */
+.flutua{position:fixed;right:20px;bottom:20px;z-index:30;width:300px;background:var(--oliva);color:var(--papel);padding:22px}
+.flutua p.t{font-family:var(--f-display);font-size:21px;line-height:1.2;margin-bottom:8px}
+.flutua p.s{font-size:13px;opacity:.82;margin-bottom:16px}
+.flutua .btn{width:100%;border-color:var(--papel);color:var(--oliva);background:var(--papel)}
+.flutua .btn:hover{background:transparent;color:var(--papel)}
+.flutua .fechar{position:absolute;top:8px;right:10px;background:none;border:0;color:var(--papel);font-size:20px;line-height:1;cursor:pointer;padding:4px}
+.flutua[hidden]{display:none}
+
+@media (max-width: 1000px){
+  .capa,.sobre,.metodo-grid,.agendar,.parcela,.cab-secao{grid-template-columns:1fr}
+  .capa-fotos img{min-height:420px}
+  .casos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rodape{grid-template-columns:1fr 1fr}
+  .metodo-grid > img{min-height:380px;max-height:520px}
+}
+@media (max-width: 760px){
+  nav{display:none;position:absolute;top:68px;left:0;right:0;background:var(--nude);border-bottom:1px solid var(--linho);padding:16px var(--gutter)}
+  nav.aberto{display:block}
+  nav ul{flex-direction:column;gap:14px}
+  .menu-btn{display:inline-flex}
+  .barra .btn.topo{display:none}
+  .colecao summary{grid-template-columns:44px minmax(0,1fr) 60px;gap:12px}
+  .c-prot{grid-column:2/4;grid-row:2}
+  .c-corpo{grid-template-columns:1fr}
+  .c-intro,.protocolos{grid-column:1}
+  .pilares{grid-template-columns:1fr 1fr;gap:16px 0}
+  .pilares div:nth-child(3){border-left:0;padding-left:0}
+  .capa-dados{grid-template-columns:1fr 1fr}
+  .flutua{display:none}
+}
+@media (max-width: 480px){
+  .casos{grid-template-columns:1fr}
+  .caso.largo{grid-column:auto}
+  .caso.largo .comparar{aspect-ratio:1.4}
+  .capa-fotos img{min-height:300px}
+  .rodape{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="aviso">Parcelamento em até 36x no boleto, sob consulta. <a href="https://wa.me/message/BMGJPKORBIFJM1">Fale comigo no WhatsApp</a></div>
+
+<header>
+  <div class="barra">
+    <a class="marca" href="#topo" aria-label="Jéssika Santos Beauty, início">
+      <span class="js">JS</span>
+      <span class="nome">JESSIKA SANTOS<small>BEAUTY</small></span>
+    </a>
+    <nav id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#colecoes">Coleções</a></li>
+        <li><a href="#metodo">Design Estrutural</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#agendar">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="btns">
+      <a class="btn topo" href="https://wa.me/message/BMGJPKORBIFJM1">Agendar horário</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="topo">
+
+  <section class="capa" style="padding:0">
+    <div class="capa-txt">
+      <div>
+        <p class="etq">Estúdio em Tambaú, SP</p>
+        <h1 class="serif" style="margin-top:18px">Não acredito em padrões de beleza. Acredito em revelar a melhor versão de cada pessoa.</h1>
+        <p class="lead">Sou a Jéssika. Trabalho com sobrancelhas de alta precisão e estética regenerativa, com protocolos que eu mesma desenvolvi para cada tipo de pele, fio e rosto.</p>
+        <div class="btns">
+          <a class="btn cheio" href="https://wa.me/message/BMGJPKORBIFJM1">Agendar pelo WhatsApp</a>
+          <a class="btn" href="#colecoes">Conhecer os protocolos</a>
+        </div>
+      </div>
+      <dl class="capa-dados">
+        <div><dt class="etq">Especialidade</dt><dd>Sobrancelhas</dd></div>
+        <div><dt class="etq">Formação</dt><dd>Estética e Cosmética</dd></div>
+        <div><dt class="etq">Protocolos</dt><dd>8 coleções</dd></div>
+      </dl>
+    </div>
+    <div class="capa-fotos">
+      <figure>
+        <img src="img/retrato.jpg" alt="Jéssika Santos de blazer branco, com a mão apoiada no queixo">
+      </figure>
+      <figure>
+        <img src="img/brow-collection.jpg" alt="Close de sobrancelha após o Design Estrutural Exclusivo">
+        <figcaption class="etq">Caso real, Brow Collection</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap sobre">
+      <div>
+        <p class="etq">Prazer, eu sou</p>
+        <h2 class="serif">Jéssika Santos</h2>
+        <div class="formacao">
+          <div><span>Graduação</span><span>Estética e Cosmética</span></div>
+          <div><span>Foco</span><span>Sobrancelhas de alta precisão</span></div>
+          <div><span>Também ensino</span><span>Cursos e protocolos</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="texto">
+          <p>Desde o início da minha trajetória, acredito que a estética vai muito além da aparência. Ela muda a forma como uma pessoa se enxerga e devolve o prazer de se olhar no espelho.</p>
+          <p>Foi com esse propósito que nasceu a Jéssika Santos Beauty: um espaço onde cada atendimento é personalizado, respeitando os traços e a essência de cada cliente.</p>
+          <p>Minha formação se constrói todos os dias, com especializações, atualizações e a graduação em Estética e Cosmética. Uno conhecimento científico, tecnologia e um olhar sensível para entregar resultados naturais e seguros.</p>
+          <p>Ao longo do caminho, criei protocolos que carregam a identidade da minha marca. Mais do que procedimentos, quero oferecer acolhimento e um atendimento verdadeiramente humano, porque cada cliente merece se sentir única.</p>
+        </div>
+        <p class="assinatura" aria-label="Assinatura: Jéssika Santos">Jéssika Santos</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="colecoes" style="padding-top:0">
+    <div class="wrap">
+      <div class="cab-secao">
+        <h2 class="serif">Coleções e protocolos</h2>
+        <p>Os mesmos protocolos da minha revista, organizados por área. Toque em uma coleção para ver o que cada protocolo faz. Os números indicam a página na revista completa.</p>
+      </div>
+
+      <div class="sumario">
+
+        <details class="colecao" open>
+          <summary>
+            <span class="c-pag">04–09</span>
+            <span class="c-nome">Brow Collection™</span>
+            <span class="c-prot">Design Estrutural, Essence, Revival, Signature, Evolution</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Sobrancelhas que revelam sua melhor versão. Protocolos que unem técnica, ciência e sensibilidade para harmonizar o olhar.</p>
+            <div class="protocolos">
+              <article class="prot">
+                <figure><img src="img/olhar-design.jpg" alt="Sobrancelhas após o Design Estrutural Exclusivo" loading="lazy"></figure>
+                <p class="etq">A assinatura da casa</p>
+                <h3>Design Estrutural Exclusivo™</h3>
+                <p>Diferente das técnicas que seguem moldes prontos e removem muitos pelos, preserva ao máximo a estrutura natural. Cada fio é analisado individualmente.</p>
+              </article>
+              <article class="prot">
+                <figure><img src="img/brow-essence.jpg" alt="Sobrancelha alinhada após Brow Lamination" loading="lazy"></figure>
+                <p class="etq">Brow lamination</p>
+                <h3>Brow Essence™</h3>
+                <p>Alinha, disciplina e valoriza os fios naturais. Sobrancelhas mais preenchidas e definidas, sem perder leveza.</p>
+              </article>
+              <article class="prot">
+                <figure><img src="img/brow-revival.jpg" alt="Sobrancelha em tratamento de regeneração" loading="lazy"></figure>
+                <p class="etq">Regeneração com exossomos</p>
+                <h3>Brow Revival™</h3>
+                <p>Microagulhamento com ativos de alta performance, incluindo exossomos, para fortalecer os folículos e estimular fios mais densos.</p>
+              </article>
+              <article class="prot">
+                <figure><img src="img/brow-signature.jpg" alt="Sobrancelha com nanopigmentação natural" loading="lazy"></figure>
+                <p class="etq">Nanopigmentação</p>
+                <h3>Brow Signature™</h3>
+                <p>Naturalidade que permanece. Pigmentos de alta qualidade e estudo da estrutura facial para sobrancelhas leves e equilibradas.</p>
+              </article>
+              <article class="prot sem-foto">
+                <p class="etq">Protocolo Derma Flow Brow</p>
+                <h3>Brow Evolution™</h3>
+                <p>O mais completo. Primeiro regenera a região com o Brow Revival™, depois define com o Brow Signature™. Para quem quer transformar as sobrancelhas de forma duradoura.</p>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">10–14</span>
+            <span class="c-nome">Lip Collection™</span>
+            <span class="c-prot">Veil, Infusion, Bloom, Signature</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Beleza que destaca, detalhes que ficam. Protocolos para realçar, corrigir e valorizar os lábios de forma natural.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Spa lips</p><h3>Lip Veil™</h3><p>Esfoliação delicada seguida de hidratação intensa. O primeiro passo para lábios saudáveis, sem procedimentos invasivos.</p></article>
+              <article class="prot sem-foto"><p class="etq">Pump lips</p><h3>Lip Infusion™</h3><p>Usa a tecnologia Dermapen para levar ativos hidratantes mais fundo. Lábios macios e viçosos, sem alterar volume nem formato.</p></article>
+              <article class="prot sem-foto"><p class="etq">Hidra color lips</p><h3>Lip Bloom™</h3><p>Hidratação intensiva com um delicado efeito de cor. Lábios com aparência naturalmente corada, fresca e uniforme.</p></article>
+              <article class="prot sem-foto"><p class="etq">Nanopigmentação labial</p><h3>Lip Signature™</h3><p>Devolve vida, definição e uniformidade, respeitando o subtom da pele e a tonalidade natural dos lábios.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">15–16</span>
+            <span class="c-nome">Lash Collection™</span>
+            <span class="c-prot">Lash Ascend</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Realce que transforma. Técnicas que valorizam o olhar com leveza, conforto e segurança.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Lash lifting</p><h3>Lash Ascend™</h3><p>Cílios naturalmente elevados desde a raiz, alinhados e com efeito de mais comprimento. Um olhar aberto sem precisar de extensões.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">17–21</span>
+            <span class="c-nome">Skin Collection™</span>
+            <span class="c-prot">Reset, Reveal, Regen, Renew</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">A ciência da estética e a delicadeza do cuidado. Protocolos faciais para tratar, restaurar e potencializar a pele.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Limpeza de pele</p><h3>Skin Reset™</h3><p>Remove impurezas, desobstrui os poros e controla a oleosidade, preservando a barreira da pele. A base para qualquer tratamento facial.</p></article>
+              <article class="prot sem-foto"><p class="etq">Dermaplaning</p><h3>Skin Reveal™</h3><p>Remove células mortas e pelos finos. Pele lisa, luminosa, que absorve melhor os cosméticos e recebe a maquiagem com acabamento impecável.</p></article>
+              <article class="prot sem-foto"><p class="etq">Microagulhamento facial</p><h3>Skin Regen™</h3><p>Estimula colágeno e elastina para renovar a pele de dentro para fora. Mais firmeza, textura uniforme e luminosidade.</p></article>
+              <article class="prot sem-foto"><p class="etq">Microagulhamento para estrias</p><h3>Skin Renew™</h3><p>Associa microagulhamento a ativos de alta performance para deixar as estrias menos aparentes, com melhora de textura e firmeza.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">22–23</span>
+            <span class="c-nome">Hair Collection™</span>
+            <span class="c-prot">Hair Revive</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Cabelos saudáveis começam na raiz. Tratamentos para o couro cabeludo que atuam na causa.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Microagulhamento capilar</p><h3>Hair Revive™</h3><p>Microagulhamento capilar com ativos de alta performance para estimular os folículos e o crescimento de fios mais fortes.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">24–26</span>
+            <span class="c-nome">Body Collection™</span>
+            <span class="c-prot">Body Flow, Body Serenity</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Seu corpo, sua essência. Protocolos corporais para leveza, equilíbrio e bem-estar.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Drenagem linfática</p><h3>Body Flow™</h3><p>Movimentos suaves e ritmados que reduzem o inchaço e melhoram a circulação. Leveza que você sente desde a primeira sessão.</p></article>
+              <article class="prot sem-foto"><p class="etq">Massagem relaxante</p><h3>Body Serenity™</h3><p>Um convite para desacelerar. Alivia tensões musculares e o estresse do dia a dia, com cada sessão adaptada a você.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">27–28</span>
+            <span class="c-nome">Laser Collection™</span>
+            <span class="c-prot">Laser Silk</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Tecnologia que transforma, com conforto e segurança em cada sessão.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Depilação a laser</p><h3>Laser Silk™</h3><p>Feito com a tecnologia Ácrus Triple Wave, que combina comprimentos de onda para atingir o folículo com precisão. Seguro para todos os fototipos.</p></article>
+            </div>
+          </div>
+        </details>
+
+        <details class="colecao">
+          <summary>
+            <span class="c-pag">29–30</span>
+            <span class="c-nome">Face Collection™</span>
+            <span class="c-prot">Face Signature</span>
+            <span class="c-abrir"><span class="ab">Abrir</span><span class="fe">Fechar</span></span>
+          </summary>
+          <div class="c-corpo">
+            <p class="c-intro">Ciência, cuidado e excelência em cada detalhe do rosto.</p>
+            <div class="protocolos">
+              <article class="prot sem-foto"><p class="etq">Maquiagem profissional</p><h3>Face Signature™</h3><p>Maquiagem planejada para o formato do seu rosto, o tom da pele e a ocasião. Para eventos, ensaios, casamentos e momentos marcantes.</p></article>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="metodo" id="metodo">
+    <div class="metodo-grid">
+      <img src="img/olhar-design.jpg" alt="Close dos olhos e sobrancelhas de uma cliente após o design" loading="lazy">
+      <div class="metodo-txt">
+        <p class="etq">Design Estrutural Exclusivo™</p>
+        <h2 class="serif">Mais do que desenhar sobrancelhas, meu método respeita quem você é.</h2>
+        <p>Meu objetivo não é criar sobrancelhas iguais em todas as clientes. Antes de tirar qualquer fio, estudo o seu rosto, a direção dos pelos e a sua expressão. O resultado é elegante, equilibrado e fiel aos seus traços.</p>
+        <div class="pilares">
+          <div>Valorização dos traços naturais</div>
+          <div>Preservação da estrutura dos fios</div>
+          <div>Harmonia e equilíbrio facial</div>
+          <div>Resultado feito para você</div>
+        </div>
+        <a class="btn" href="https://wa.me/message/BMGJPKORBIFJM1">Agendar meu design</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultados">
+    <div class="wrap">
+      <div class="cab-secao">
+        <h2 class="serif">Antes e depois</h2>
+        <p>Resultados de clientes do estúdio. Arraste a linha sobre cada foto para comparar.</p>
+      </div>
+      <div class="casos">
+        <figure class="caso">
+          <div class="comparar">
+            <img src="img/ad-brow-antes.jpg" alt="Sobrancelhas antes do Brow Revival">
+            <img class="depois" src="img/ad-brow-depois.jpg" alt="Sobrancelhas depois do Brow Revival">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-brow" aria-label="Comparar antes e depois do Brow Revival">
+          </div>
+          <figcaption><h3>Brow Revival™</h3><p>Design e revitalização de sobrancelhas</p></figcaption>
+        </figure>
+        <figure class="caso">
+          <div class="comparar">
+            <img src="img/ad-lip-antes.jpg" alt="Lábios antes do Lip Bloom">
+            <img class="depois" src="img/ad-lip-depois.jpg" alt="Lábios depois do Lip Bloom">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-lip" aria-label="Comparar antes e depois do Lip Bloom">
+          </div>
+          <figcaption><h3>Lip Bloom™</h3><p>Revitalização labial com cor suave</p></figcaption>
+        </figure>
+        <figure class="caso largo">
+          <div class="comparar">
+            <img src="img/ad-skin-antes.jpg" alt="Pele com acne antes do microagulhamento" style="object-position:30% 50%">
+            <img class="depois" src="img/ad-skin-depois.jpg" alt="Pele depois do microagulhamento" style="object-position:30% 50%">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-skin" aria-label="Comparar antes e depois do microagulhamento facial">
+          </div>
+          <figcaption><h3>Microagulhamento facial</h3><p>Textura e marcas de acne</p></figcaption>
+        </figure>
+        <figure class="caso largo">
+          <div class="comparar">
+            <img src="img/ad-laser-antes.jpg" alt="Axila antes da depilação a laser">
+            <img class="depois" src="img/ad-laser-depois.jpg" alt="Axila depois da depilação a laser">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-laser" aria-label="Comparar antes e depois do Laser Silk">
+          </div>
+          <figcaption><h3>Laser Silk™</h3><p>Depilação a laser</p></figcaption>
+        </figure>
+        <div class="caso largo casos-nota">
+          <p>Cada resultado depende da avaliação individual da pele, dos fios e do histórico de cada cliente.</p>
+          <p>Tem mais casos nos destaques de Sobrancelhas, Lábios e Feedbacks do Instagram.</p>
+          <a class="btn" href="https://www.instagram.com/jessikasantosbeauty/">Ver no Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="parcela">
+        <p class="num">36<span>x</span></p>
+        <div>
+          <p>Agora o estúdio também tem parcelamento no boleto em até 36 vezes, pela Parcela Mais. Assim você começa o seu protocolo sem esperar.</p>
+          <p>Sujeito a análise. Pergunte as condições no WhatsApp. Também aceito Pix e cartão.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agendar" style="padding-top:0">
+    <div class="wrap agendar">
+      <div>
+        <p class="etq">Agende sua avaliação</p>
+        <h2 class="serif" style="margin-top:16px">Vamos conversar sobre o que você quer realçar.</h2>
+        <p class="lead">Me conte pelo WhatsApp o que você deseja tratar. Eu indico o protocolo certo depois de avaliar sua pele, seus fios e seu rosto.</p>
+        <div class="btns">
+          <a class="btn cheio" href="https://wa.me/message/BMGJPKORBIFJM1">Chamar no WhatsApp</a>
+          <a class="btn" href="https://drive.google.com/file/d/1BY-LgA664Aha1eyp7B6vwAyWvUWpNuxp/view">Ver a revista completa</a>
+        </div>
+        <p class="citacao">“Não acredito em padrões de beleza. Acredito em revelar, com técnica e sensibilidade, a melhor versão de cada pessoa.”</p>
+      </div>
+      <div class="contatos">
+        <div><span class="etq">WhatsApp</span><a href="https://wa.me/message/BMGJPKORBIFJM1">(19) 99308-3393</a></div>
+        <div><span class="etq">Endereço</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Doutor+Delduque+Vieira+Palma+41+Tamba%C3%BA+SP">Rua Doutor Delduque Vieira Palma, 41<br>Tambaú, SP, 13710-000</a></div>
+        <div><span class="etq">Instagram</span><a href="https://www.instagram.com/jessikasantosbeauty/">@jessikasantosbeauty</a></div>
+        <div><span class="etq">Pagamento</span><span>Pix, cartão e boleto em até 36x</span></div>
+        <div><span class="etq">Cursos</span><span>Turmas e mentorias sob consulta</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="rodape">
+      <div>
+        <a class="marca" href="#topo"><span class="js">JS</span><span class="nome">JESSIKA SANTOS<small>BEAUTY</small></span></a>
+        <p style="margin-top:16px;max-width:26em;font-size:14px;color:var(--nevoa)">Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP.</p>
+      </div>
+      <div>
+        <h4>Sobrancelhas e olhar</h4>
+        <ul><li><a href="#colecoes">Design Estrutural</a></li><li><a href="#colecoes">Brow Essence</a></li><li><a href="#colecoes">Brow Signature</a></li><li><a href="#colecoes">Lash Ascend</a></li></ul>
+      </div>
+      <div>
+        <h4>Pele, corpo e laser</h4>
+        <ul><li><a href="#colecoes">Skin Collection</a></li><li><a href="#colecoes">Lip Collection</a></li><li><a href="#colecoes">Body Collection</a></li><li><a href="#colecoes">Laser Silk</a></li></ul>
+      </div>
+      <div>
+        <h4>Estúdio</h4>
+        <ul><li><a href="#sobre">Sobre a Jéssika</a></li><li><a href="#resultados">Resultados</a></li><li><a href="https://wa.me/message/BMGJPKORBIFJM1">Agendar</a></li><li><a href="https://www.instagram.com/jessikasantosbeauty/">Instagram</a></li></ul>
+      </div>
+    </div>
+    <div class="credito etq">
+      <span>© 2026 Jéssika Santos Beauty</span>
+      <span>Site por Nexux Marketing Digital</span>
+    </div>
+  </div>
+</footer>
+
+<aside class="flutua" id="flutua" aria-label="Agendamento" hidden>
+  <button class="fechar" id="fecharFlutua" aria-label="Fechar aviso de agendamento">×</button>
+  <p class="t">Primeira vez no estúdio?</p>
+  <p class="s">Comece pela avaliação. Eu analiso seu rosto e indico o protocolo certo para você.</p>
+  <a class="btn" href="https://wa.me/message/BMGJPKORBIFJM1">Agendar avaliação</a>
+</aside>
+
+<script>
+  document.querySelectorAll('.comparar').forEach(function (box) {
+    var input = box.querySelector('input');
+    var set = function () { box.style.setProperty('--pos', input.value + '%'); };
+    input.addEventListener('input', set); set();
+  });
+  var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('aberto');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { nav.classList.remove('aberto'); btn.setAttribute('aria-expanded','false'); }); });
+  var flutua = document.getElementById('flutua'), fechado = false;
+  document.getElementById('fecharFlutua').addEventListener('click', function () { fechado = true; flutua.hidden = true; });
+  window.addEventListener('scroll', function () { if (!fechado) flutua.hidden = window.scrollY < 700; }, { passive: true });
+</script>
+</body>
+</html>
