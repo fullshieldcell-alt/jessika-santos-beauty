@@ -149,7 +149,7 @@ section{padding:var(--secao) 0}
 .comparar .rot.a{left:10px}.comparar .rot.d{right:10px}
 .caso h3{font-family:var(--f-display);font-weight:400;font-size:22px;margin-top:14px}
 .caso p{font-size:14px;color:var(--nevoa)}
-.casos-nota{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;font-size:15px;color:var(--nevoa);border-top:1px solid var(--linho);padding-top:20px}
+.casos-nota{grid-column:span 2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px;font-size:15px;color:var(--nevoa);border-top:1px solid var(--linho);padding-top:20px}
 .casos-nota p{max-width:30em}
 
 /* parcelamento */
@@ -265,6 +265,7 @@ footer .marca .nome small{color:var(--champanhe)}
   .rodape > div:last-child ul{display:flex;flex-wrap:wrap;gap:10px 22px}
   .credito{flex-direction:column;align-items:center;text-align:center;gap:6px;margin-top:32px}
 }
+@media (max-width:480px){.casos-nota{grid-column:auto}}
 </style>
 </head>
 <body>
@@ -409,7 +410,8 @@ footer .marca .nome small{color:var(--champanhe)}
                 <h3>Brow Signature™</h3>
                 <p>Naturalidade que permanece. Pigmentos de alta qualidade e estudo da estrutura facial para sobrancelhas leves e equilibradas.</p>
               </article>
-              <article class="prot sem-foto">
+              <article class="prot">
+                <figure><img src="img/brow-evolution.jpg" alt="Sobrancelhas após o Brow Evolution" loading="lazy"></figure>
                 <p class="etq">Protocolo Derma Flow Brow</p>
                 <h3>Brow Evolution™</h3>
                 <p>O mais completo. Primeiro regenera a região com o Brow Revival™, depois define com o Brow Signature™. Para quem quer transformar as sobrancelhas de forma duradoura.</p>
@@ -618,6 +620,16 @@ footer .marca .nome small{color:var(--champanhe)}
             <input type="range" min="0" max="100" value="50" id="cmp-hair" aria-label="Comparar antes e depois: Hair Revive™">
           </div>
           <figcaption><h3>Hair Revive™</h3><p>Couro cabeludo após 2 sessões</p></figcaption>
+        </figure>
+        <figure class="caso largo">
+          <div class="comparar">
+            <img src="img/ad-evolution-antes.jpg" alt="Sobrancelhas antes" style="object-position:50% 40%" loading="lazy">
+            <img class="depois" src="img/ad-evolution-depois.jpg" alt="Sobrancelhas depois" style="object-position:50% 40%" loading="lazy">
+            <span class="linha"></span>
+            <span class="rot a etq">Antes</span><span class="rot d etq">Depois</span>
+            <input type="range" min="0" max="100" value="50" id="cmp-evolution" aria-label="Comparar antes e depois: Brow Evolution™">
+          </div>
+          <figcaption><h3>Brow Evolution™</h3><p>Regeneração e nanopigmentação das sobrancelhas</p></figcaption>
         </figure>
         <div class="casos-nota">
           <p>Fotos reais de clientes do estúdio. Cada resultado depende da avaliação individual da pele, dos fios e do histórico de cada pessoa.</p>
