@@ -60,7 +60,21 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
 .nota{font-size:13px;color:var(--nevoa)}
 .erro{font-size:14px;color:#8a2c1d;background:#fbebeb;padding:10px 12px;border-radius:2px}
 .erro[hidden]{display:none}
-@media (max-width:820px){main{grid-template-columns:1fr}.palco{max-height:72vh;aspect-ratio:3/4;margin:0 auto;width:100%}}
+.ctl{display:none}
+@media (max-width:820px){
+  main{grid-template-columns:1fr;padding-top:12px}
+  .palco{height:min(74vh,133vw);aspect-ratio:auto;margin:0 auto;width:100%}
+  .ctl{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:10px;padding:28px 12px 12px;background:linear-gradient(to top,rgba(35,37,28,.78),rgba(35,37,28,0))}
+  .ctl[hidden]{display:none}
+  .chips{display:flex;gap:6px}
+  .chips button{flex:1;font-family:var(--f-corpo);font-size:13px;padding:10px 4px;border-radius:2px;border:1px solid rgba(251,248,244,.7);background:rgba(35,37,28,.35);color:var(--papel);cursor:pointer}
+  .chips button[aria-pressed=true]{background:var(--papel);color:var(--musgo);border-color:var(--papel)}
+  .ctl-linha{display:flex;align-items:center;gap:10px}
+  .ctl-linha input{flex:1;accent-color:var(--papel)}
+  .ctl-linha .comparar{width:auto;flex:none;font-size:13px;padding:10px 14px;color:var(--papel);border-color:var(--papel);background:rgba(35,37,28,.35)}
+  .aviso-palco{bottom:auto;top:12px;left:auto;right:12px;max-width:60%}
+  .so-desk{display:none}
+}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
@@ -84,6 +98,17 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
         </div>
         <small>Tudo acontece no seu celular. A imagem não é enviada para lugar nenhum.</small>
       </div>
+      <div class="ctl" id="ctl" hidden>
+        <div class="chips" role="group" aria-label="Protocolo">
+          <button type="button" data-proto="revival" aria-pressed="true">Revival</button>
+          <button type="button" data-proto="essence" aria-pressed="false">Essence</button>
+          <button type="button" data-proto="signature" aria-pressed="false">Signature</button>
+        </div>
+        <div class="ctl-linha">
+          <input id="intMob" type="range" min="20" max="100" value="65" aria-label="Intensidade">
+          <button class="btn comparar" id="compararMob" type="button">Segure: antes</button>
+        </div>
+      </div>
       <p class="aviso-palco" id="avisoPalco" hidden>Posicione o rosto de frente, com boa luz</p>
     </div>
     <input id="arquivo" type="file" accept="image/*" hidden>
@@ -97,7 +122,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
       <p class="lead">Escolha o protocolo e veja uma prévia na sua própria câmera. Segure o botão de comparar para ver como você está hoje.</p>
     </div>
 
-    <fieldset class="bloco" style="border-left:0;border-right:0;border-bottom:0">
+    <fieldset class="bloco so-desk" style="border-left:0;border-right:0;border-bottom:0">
       <legend class="etq" style="padding-right:8px">Protocolo</legend>
       <div class="protocolos">
         <label><input type="radio" name="proto" value="revival" checked><div><b>Brow Revival™</b><span>Regeneração: mais fios e falhas preenchidas</span></div></label>
@@ -106,13 +131,13 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
       </div>
     </fieldset>
 
-    <div class="bloco">
+    <div class="bloco so-desk">
       <label class="etq" for="intensidade">Intensidade</label>
       <div class="faixa-int"><span class="nota">Suave</span><input id="intensidade" type="range" min="20" max="100" value="65"><span class="nota">Marcante</span></div>
     </div>
 
     <div class="bloco">
-      <div class="btns">
+      <div class="btns so-desk">
         <button class="btn comparar" id="comparar" type="button" disabled>Segure para ver o antes</button>
       </div>
       <div class="btns">
@@ -260,7 +285,7 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-function prontoParaUsar() { $('vazio').hidden = true; $('comparar').disabled = false; $('foto').disabled = estado.modo !== 'camera'; }
+function prontoParaUsar() { $('vazio').hidden = true; $('ctl').hidden = false; $('comparar').disabled = false; $('foto').disabled = estado.modo !== 'camera'; }
 
 $('abrirCamera').addEventListener('click', async () => {
   erro('');
@@ -296,12 +321,22 @@ function redesenharFoto() { if (estado.modo === 'foto' && estado.img) desenhar(e
 document.querySelectorAll('input[name=proto]').forEach(i => i.addEventListener('change', redesenharFoto));
 $('intensidade').addEventListener('input', redesenharFoto);
 
-const cmp = $('comparar');
 const ligar = v => { estado.antes = v; redesenharFoto(); };
-cmp.addEventListener('pointerdown', e => { e.preventDefault(); ligar(true); });
-['pointerup', 'pointerleave', 'pointercancel'].forEach(t => cmp.addEventListener(t, () => ligar(false)));
-cmp.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); ligar(true); } });
-cmp.addEventListener('keyup', () => ligar(false));
+[$('comparar'), $('compararMob')].forEach(cmp => {
+  cmp.addEventListener('pointerdown', e => { e.preventDefault(); ligar(true); });
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => cmp.addEventListener(t, () => ligar(false)));
+  cmp.addEventListener('contextmenu', e => e.preventDefault());
+  cmp.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); ligar(true); } });
+  cmp.addEventListener('keyup', () => ligar(false));
+});
+// botões sobre a câmera (celular) e lista lateral (computador) ficam sincronizados
+function marcarChips(v) { document.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.proto === v))); }
+document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
+  document.querySelector(`input[name=proto][value=${b.dataset.proto}]`).checked = true; marcarChips(b.dataset.proto); redesenharFoto();
+}));
+document.querySelectorAll('input[name=proto]').forEach(i => i.addEventListener('change', () => marcarChips(i.value)));
+$('intMob').addEventListener('input', () => { $('intensidade').value = $('intMob').value; redesenharFoto(); });
+$('intensidade').addEventListener('input', () => { $('intMob').value = $('intensidade').value; });
 
 $('foto').addEventListener('click', () => {
   estado.congelado = !estado.congelado;
