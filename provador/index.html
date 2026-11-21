@@ -211,6 +211,9 @@ function desenharSobrancelha(lm, idx, cfg, escala, cor) {
   let up = BROWS[idx].up.map(P), low = BROWS[idx].low.map(P);
   // engrossa para cima conforme o protocolo
   const cresce = cfg.cresce;
+  // engrossa para baixo (mais) e um pouco para cima
+  const up0 = up;
+  low = low.map((q, i) => ({ x: q.x, y: q.y + (q.y - up0[i].y) * cfg.desce }));
   up = up.map((p, i) => { const q = low[i]; return { x: p.x + (p.x - q.x) * cresce * 0.4, y: p.y + (p.y - q.y) * cresce }; });
   // rabo da sobrancelha em ponta: estreita perto do canto de fora e termina num ponto um pouco além dele
   const mid = up.map((p, i) => ({ x: (p.x + low[i].x) / 2, y: (p.y + low[i].y) / 2 }));
@@ -259,9 +262,9 @@ function desenharSobrancelha(lm, idx, cfg, escala, cor) {
 }
 
 const PROTOS = {
-  revival:   { fios: 300, comp: 0.5,  subir: 0.5,  cresce: 0.06, po: 0.05 },
-  essence:   { fios: 260, comp: 0.65, subir: 0.8,  cresce: 0.1,  po: 0 },
-  signature: { fios: 180, comp: 0.45, subir: 0.4,  cresce: 0.04, po: 0.22 }
+  revival:   { fios: 380, comp: 0.45, subir: 0.5,  cresce: 0.08, desce: 0.35, po: 0.05 },
+  essence:   { fios: 330, comp: 0.55, subir: 0.8,  cresce: 0.1,  desce: 0.3,  po: 0 },
+  signature: { fios: 230, comp: 0.4,  subir: 0.4,  cresce: 0.06, desce: 0.35, po: 0.22 }
 };
 
 function desenhar(fonte, lm) {
