@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provador de sobrancelhas · Jéssika Santos Beauty</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<meta name="theme-color" content="#4E5534">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Provador: palco escuro em verde musgo para a câmera, controles em nude; mesma marca do site */
+  --nude:#F5F0EA; --papel:#FBF8F4; --tinta:#23251C; --musgo:#4E5534; --musgo-escuro:#3D4329;
+  --champanhe:#A88553; --linho:#E2D9CD; --nevoa:#6F6A5F; --salvia:#CDCBB0;
+  --f-display:"Gilda Display", Georgia, serif; --f-corpo:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--nude);color:var(--tinta);font-family:var(--f-corpo);line-height:1.5;min-height:100vh}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--champanhe);outline-offset:2px}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,4vw,40px);border-bottom:1px solid var(--linho);background:var(--nude)}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca img{width:34px;height:auto}
+.marca span{font-family:var(--f-display);font-size:13px;letter-spacing:.22em}
+.voltar{font-size:14px;text-underline-offset:3px}
+main{max-width:1100px;margin:0 auto;padding:clamp(20px,4vw,40px) clamp(16px,4vw,40px) 64px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,4vw,48px);align-items:start}
+.etq{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--musgo)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.08;margin:10px 0 12px;text-wrap:balance}
+.lead{font-size:16px;color:var(--nevoa);max-width:34em}
+.palco{position:relative;background:var(--musgo);aspect-ratio:3/4;overflow:hidden;border-radius:2px}
+.palco canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.palco video{display:none}
+.vazio{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;color:var(--papel)}
+.vazio p{font-family:var(--f-display);font-size:22px;line-height:1.25;max-width:14em}
+.vazio small{font-size:13px;color:var(--salvia);max-width:26em}
+.aviso-palco{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(35,37,28,.62);color:var(--papel);font-size:13px;padding:8px 12px;border-radius:2px;text-align:center}
+.aviso-palco[hidden]{display:none}
+.rot{position:absolute;top:12px;left:12px;background:var(--papel);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:4px 8px;border-radius:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-corpo);font-size:15px;padding:13px 22px;border-radius:2px;text-decoration:none;border:1px solid var(--tinta);color:var(--tinta);background:transparent;cursor:pointer}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.cheio{background:var(--musgo);border-color:var(--musgo);color:var(--papel)}
+.btn.claro{border-color:var(--papel);color:var(--papel)}
+.btn.claro.cheio{background:var(--papel);color:var(--musgo)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.painel{display:flex;flex-direction:column;gap:26px}
+.bloco{border-top:1px solid var(--linho);padding-top:18px;display:flex;flex-direction:column;gap:12px}
+.protocolos{display:grid;gap:8px}
+.protocolos label{display:grid;grid-template-columns:18px 1fr;gap:12px;align-items:start;border:1px solid var(--linho);padding:12px 14px;border-radius:2px;cursor:pointer;background:var(--papel)}
+.protocolos label:has(input:checked){border-color:var(--musgo);box-shadow:inset 0 0 0 1px var(--musgo)}
+.protocolos input{accent-color:var(--musgo);margin-top:4px}
+.protocolos b{font-family:var(--f-display);font-weight:400;font-size:18px;display:block}
+.protocolos span{font-size:13px;color:var(--nevoa)}
+.faixa-int{display:flex;align-items:center;gap:12px}
+.faixa-int input{flex:1;accent-color:var(--musgo)}
+.comparar{width:100%;user-select:none;-webkit-user-select:none;touch-action:none}
+.nota{font-size:13px;color:var(--nevoa)}
+.erro{font-size:14px;color:#8a2c1d;background:#fbebeb;padding:10px 12px;border-radius:2px}
+.erro[hidden]{display:none}
+@media (max-width:820px){main{grid-template-columns:1fr}.palco{max-height:72vh;aspect-ratio:3/4;margin:0 auto;width:100%}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="/"><img src="/img/logo-icone.png" alt=""><span>JESSIKA SANTOS</span></a>
+  <a class="voltar" href="/">Voltar ao site</a>
+</header>
+
+<main>
+  <div>
+    <div class="palco" id="palco">
+      <video id="video" playsinline muted></video>
+      <canvas id="tela" aria-label="Simulação da sobrancelha"></canvas>
+      <span class="rot" id="rotulo" hidden>Simulação</span>
+      <div class="vazio" id="vazio">
+        <p>Veja como ficariam as suas sobrancelhas</p>
+        <div class="btns" style="justify-content:center">
+          <button class="btn claro cheio" id="abrirCamera" type="button">Abrir a câmera</button>
+          <label class="btn claro" for="arquivo">Enviar uma foto</label>
+        </div>
+        <small>Tudo acontece no seu celular. A imagem não é enviada para lugar nenhum.</small>
+      </div>
+      <p class="aviso-palco" id="avisoPalco" hidden>Posicione o rosto de frente, com boa luz</p>
+    </div>
+    <input id="arquivo" type="file" accept="image/*" hidden>
+    <p class="erro" id="erro" hidden></p>
+  </div>
+
+  <div class="painel">
+    <div>
+      <p class="etq">Provador de sobrancelhas</p>
+      <h1>Teste o resultado antes de agendar.</h1>
+      <p class="lead">Escolha o protocolo e veja uma prévia na sua própria câmera. Segure o botão de comparar para ver como você está hoje.</p>
+    </div>
+
+    <fieldset class="bloco" style="border-left:0;border-right:0;border-bottom:0">
+      <legend class="etq" style="padding-right:8px">Protocolo</legend>
+      <div class="protocolos">
+        <label><input type="radio" name="proto" value="revival" checked><div><b>Brow Revival™</b><span>Regeneração: mais fios e falhas preenchidas</span></div></label>
+        <label><input type="radio" name="proto" value="essence"><div><b>Brow Essence™</b><span>Fios alinhados para cima, volume natural</span></div></label>
+        <label><input type="radio" name="proto" value="signature"><div><b>Brow Signature™</b><span>Nanopigmentação: desenho mais definido</span></div></label>
+      </div>
+    </fieldset>
+
+    <div class="bloco">
+      <label class="etq" for="intensidade">Intensidade</label>
+      <div class="faixa-int"><span class="nota">Suave</span><input id="intensidade" type="range" min="20" max="100" value="65"><span class="nota">Marcante</span></div>
+    </div>
+
+    <div class="bloco">
+      <div class="btns">
+        <button class="btn comparar" id="comparar" type="button" disabled>Segure para ver o antes</button>
+      </div>
+      <div class="btns">
+        <button class="btn" id="foto" type="button" disabled>Congelar imagem</button>
+        <a class="btn cheio" href="https://wa.me/message/BMGJPKORBIFJM1">Quero esse resultado</a>
+      </div>
+      <p class="nota">Simulação ilustrativa feita no seu aparelho. O resultado real depende da avaliação dos seus fios e da sua pele com a Jéssika.</p>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+const VISION = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+const MODEL = 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task';
+
+// pontos da malha facial (MediaPipe): contorno de cima e de baixo de cada sobrancelha, de fora para dentro
+const BROWS = [
+  { up: [70, 63, 105, 66, 107], low: [46, 53, 52, 65, 55] },
+  { up: [300, 293, 334, 296, 336], low: [276, 283, 282, 295, 285] }
+];
+const EYE_L = 33, EYE_R = 263;
+
+const $ = id => document.getElementById(id);
+const video = $('video'), tela = $('tela'), ctx = tela.getContext('2d', { willReadFrequently: true });
+const estado = { modo: null, landmarker: null, rodando: false, antes: false, congelado: false, img: null, pontos: null };
+
+function erro(msg) { const e = $('erro'); e.textContent = msg; e.hidden = !msg; }
+
+async function carregarIA() {
+  if (estado.landmarker) return estado.landmarker;
+  const { FaceLandmarker, FilesetResolver } = await import(VISION + '/vision_bundle.mjs');
+  const files = await FilesetResolver.forVisionTasks(VISION + '/wasm');
+  const criar = delegate => FaceLandmarker.createFromOptions(files, {
+    baseOptions: { modelAssetPath: MODEL, delegate }, runningMode: 'VIDEO', numFaces: 1
+  });
+  try { estado.landmarker = await criar('GPU'); } catch (e) { estado.landmarker = await criar('CPU'); }
+  return estado.landmarker;
+}
+
+// números pseudoaleatórios fixos, para os fios não tremerem entre um quadro e outro
+function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+
+// curva suave passando pelos pontos (Catmull-Rom), amostrada em t de 0 a 1
+function curva(pts, t) {
+  const n = pts.length - 1, f = Math.min(n - 1e-6, Math.max(0, t * n)), i = Math.floor(f), u = f - i;
+  const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(n, i + 2)];
+  const c = (a, b, c2, d) => 0.5 * ((2 * b) + (-a + c2) * u + (2 * a - 5 * b + 4 * c2 - d) * u * u + (-a + 3 * b - 3 * c2 + d) * u * u * u);
+  return { x: c(p0.x, p1.x, p2.x, p3.x), y: c(p0.y, p1.y, p2.y, p3.y) };
+}
+
+// cor dos fios: média dos pixels mais escuros da própria sobrancelha
+function corDosFios(up, low) {
+  const xs = [...up, ...low].map(p => p.x), ys = [...up, ...low].map(p => p.y);
+  const x0 = Math.max(0, Math.floor(Math.min(...xs))), y0 = Math.max(0, Math.floor(Math.min(...ys)));
+  const w = Math.max(1, Math.min(tela.width - x0, Math.ceil(Math.max(...xs)) - x0)), h = Math.max(1, Math.min(tela.height - y0, Math.ceil(Math.max(...ys)) - y0));
+  const d = ctx.getImageData(x0, y0, w, h).data, px = [];
+  for (let i = 0; i < d.length; i += 16) px.push([d[i], d[i + 1], d[i + 2], d[i] * 0.3 + d[i + 1] * 0.59 + d[i + 2] * 0.11]);
+  px.sort((a, b) => a[3] - b[3]);
+  const k = Math.max(1, Math.floor(px.length * 0.15)); let r = 0, g = 0, b = 0;
+  for (let i = 0; i < k; i++) { r += px[i][0]; g += px[i][1]; b += px[i][2]; }
+  r /= k; g /= k; b /= k;
+  const esc = 0.78; // um pouco mais escuro que a média, como um fio novo
+  return [Math.round(r * esc), Math.round(g * esc), Math.round(b * esc)];
+}
+
+function desenharSobrancelha(lm, idx, cfg, escala, cor) {
+  const P = i => ({ x: lm[i].x * tela.width, y: lm[i].y * tela.height });
+  let up = BROWS[idx].up.map(P), low = BROWS[idx].low.map(P);
+  // engrossa para cima conforme o protocolo
+  const cresce = cfg.cresce;
+  up = up.map((p, i) => { const q = low[i]; return { x: p.x + (p.x - q.x) * cresce * 0.4, y: p.y + (p.y - q.y) * cresce }; });
+  const [r, g, b] = cor, I = cfg.int;
+
+  if (cfg.po > 0) { // preenchimento suave tipo nanopigmentação
+    ctx.save(); ctx.beginPath();
+    for (let t = 0; t <= 1.0001; t += 0.05) { const p = curva(up, t); t === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y); }
+    for (let t = 1; t >= -0.0001; t -= 0.05) { const p = curva(low, t); ctx.lineTo(p.x, p.y); }
+    ctx.closePath(); ctx.filter = `blur(${Math.max(1, escala * 0.012)}px)`;
+    ctx.fillStyle = `rgba(${r},${g},${b},${cfg.po * I})`; ctx.fill(); ctx.restore();
+  }
+
+  const rand = rng(idx ? 9173 : 4211), n = Math.round(cfg.fios * I);
+  ctx.lineCap = 'round';
+  for (let k = 0; k < n; k++) {
+    const t = rand(), v = rand();               // t: de fora (0) para dentro (1); v: de baixo para cima
+    const a = curva(low, t), c = curva(up, t);
+    const base = { x: a.x + (c.x - a.x) * v * 0.85, y: a.y + (c.y - a.y) * v * 0.85 };
+    const t2 = Math.min(1, t + 0.02), a2 = curva(up, Math.max(0, t - 0.02)), b2 = curva(up, t2);
+    let tx = b2.x - a2.x, ty = b2.y - a2.y; const tl = Math.hypot(tx, ty) || 1; tx /= tl; ty /= tl; // tangente, apontando para dentro
+    let nx = c.x - a.x, ny = c.y - a.y; const nl = Math.hypot(nx, ny) || 1; nx /= nl; ny /= nl;     // normal, para cima
+    // perto do início (lado de dentro) os fios sobem; no rabo, deitam para fora
+    const subir = cfg.subir * (0.25 + 0.75 * t);
+    let dx = nx * subir - tx * (1 - subir), dy = ny * subir - ty * (1 - subir); const dl = Math.hypot(dx, dy) || 1; dx /= dl; dy /= dl;
+    const L = nl * (cfg.comp * (0.6 + rand() * 0.5));
+    const curv = (rand() - 0.5) * L * 0.25;
+    ctx.strokeStyle = `rgba(${r},${g},${b},${(0.35 + rand() * 0.4) * I})`;
+    ctx.lineWidth = Math.max(0.6, escala * (0.0022 + rand() * 0.0016));
+    ctx.beginPath(); ctx.moveTo(base.x, base.y);
+    ctx.quadraticCurveTo(base.x + dx * L * 0.5 - dy * curv, base.y + dy * L * 0.5 + dx * curv, base.x + dx * L, base.y + dy * L);
+    ctx.stroke();
+  }
+}
+
+const PROTOS = {
+  revival:   { fios: 260, comp: 0.75, subir: 0.55, cresce: 0.18, po: 0.06 },
+  essence:   { fios: 220, comp: 1.05, subir: 0.85, cresce: 0.28, po: 0 },
+  signature: { fios: 160, comp: 0.6,  subir: 0.45, cresce: 0.12, po: 0.28 }
+};
+
+function desenhar(fonte, lm) {
+  const w = fonte.videoWidth || fonte.naturalWidth || fonte.width, h = fonte.videoHeight || fonte.naturalHeight || fonte.height;
+  if (tela.width !== w || tela.height !== h) { tela.width = w; tela.height = h; }
+  ctx.save();
+  const espelho = estado.modo === 'camera';
+  if (espelho) { ctx.translate(w, 0); ctx.scale(-1, 1); }
+  ctx.drawImage(fonte, 0, 0, w, h);
+  if (lm && !estado.antes) {
+    const proto = document.querySelector('input[name=proto]:checked').value;
+    const cfg = { ...PROTOS[proto], int: $('intensidade').value / 100 };
+    const escala = Math.hypot((lm[EYE_L].x - lm[EYE_R].x) * w, (lm[EYE_L].y - lm[EYE_R].y) * h) * 2.2;
+    for (let i = 0; i < 2; i++) {
+      const P = j => ({ x: lm[j].x * w, y: lm[j].y * h });
+      // a cor é lida com a imagem já desenhada; em modo espelho a leitura usa as coordenadas reais da tela
+      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      const m = p => espelho ? { x: w - p.x, y: p.y } : p;
+      const cor = corDosFios(BROWS[i].up.map(P).map(m), BROWS[i].low.map(P).map(m));
+      ctx.restore();
+      desenharSobrancelha(lm, i, cfg, escala, cor);
+    }
+  }
+  ctx.restore();
+  $('rotulo').hidden = !lm; $('rotulo').textContent = estado.antes ? 'Antes' : 'Simulação';
+}
+
+let ultimo = -1;
+function loop() {
+  if (!estado.rodando) return;
+  if (!estado.congelado && video.readyState >= 2 && video.currentTime !== ultimo) {
+    ultimo = video.currentTime;
+    const r = estado.landmarker.detectForVideo(video, performance.now());
+    estado.pontos = r.faceLandmarks && r.faceLandmarks[0] || null;
+    $('avisoPalco').hidden = !!estado.pontos;
+  }
+  if (!estado.congelado) desenhar(video, estado.pontos);
+  requestAnimationFrame(loop);
+}
+
+function prontoParaUsar() { $('vazio').hidden = true; $('comparar').disabled = false; $('foto').disabled = estado.modo !== 'camera'; }
+
+$('abrirCamera').addEventListener('click', async () => {
+  erro('');
+  try {
+    $('abrirCamera').textContent = 'Carregando…';
+    const [stream] = await Promise.all([
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false }),
+      carregarIA()
+    ]);
+    await estado.landmarker.setOptions({ runningMode: 'VIDEO' });
+    video.srcObject = stream; await video.play();
+    estado.modo = 'camera'; estado.rodando = true; estado.congelado = false; prontoParaUsar(); loop();
+  } catch (e) {
+    $('abrirCamera').textContent = 'Abrir a câmera';
+    erro(e && e.name === 'NotAllowedError' ? 'Para testar, permita o uso da câmera no navegador. Se preferir, envie uma foto.' : 'Não foi possível abrir a câmera neste aparelho. Tente enviar uma foto.');
+  }
+});
+
+$('arquivo').addEventListener('change', async ev => {
+  const f = ev.target.files && ev.target.files[0]; if (!f) return; erro('');
+  estado.rodando = false; if (video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
+  const img = new Image(); img.src = URL.createObjectURL(f); await img.decode();
+  try {
+    await carregarIA(); await estado.landmarker.setOptions({ runningMode: 'IMAGE' });
+    const r = estado.landmarker.detect(img);
+    estado.pontos = r.faceLandmarks && r.faceLandmarks[0] || null; estado.img = img; estado.modo = 'foto';
+    if (!estado.pontos) erro('Não encontramos um rosto nessa foto. Use uma foto de frente, com as sobrancelhas aparecendo.');
+    prontoParaUsar(); desenhar(img, estado.pontos);
+  } catch (e) { erro('Não foi possível carregar o provador. Verifique a internet e tente de novo.'); }
+});
+
+function redesenharFoto() { if (estado.modo === 'foto' && estado.img) desenhar(estado.img, estado.pontos); else if (estado.congelado && estado.snap) desenhar(estado.snap, estado.pontos); }
+document.querySelectorAll('input[name=proto]').forEach(i => i.addEventListener('change', redesenharFoto));
+$('intensidade').addEventListener('input', redesenharFoto);
+
+const cmp = $('comparar');
+const ligar = v => { estado.antes = v; redesenharFoto(); };
+cmp.addEventListener('pointerdown', e => { e.preventDefault(); ligar(true); });
+['pointerup', 'pointerleave', 'pointercancel'].forEach(t => cmp.addEventListener(t, () => ligar(false)));
+cmp.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); ligar(true); } });
+cmp.addEventListener('keyup', () => ligar(false));
+
+$('foto').addEventListener('click', () => {
+  estado.congelado = !estado.congelado;
+  $('foto').textContent = estado.congelado ? 'Voltar para a câmera' : 'Congelar imagem';
+  if (estado.congelado) {
+    const c = document.createElement('canvas'); c.width = video.videoWidth; c.height = video.videoHeight;
+    c.getContext('2d').drawImage(video, 0, 0); estado.snap = c; desenhar(c, estado.pontos);
+  }
+});
+</script>
+</body>
+</html>
