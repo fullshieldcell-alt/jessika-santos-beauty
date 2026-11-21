@@ -212,6 +212,13 @@ function desenharSobrancelha(lm, idx, cfg, escala, cor) {
   // engrossa para cima conforme o protocolo
   const cresce = cfg.cresce;
   up = up.map((p, i) => { const q = low[i]; return { x: p.x + (p.x - q.x) * cresce * 0.4, y: p.y + (p.y - q.y) * cresce }; });
+  // rabo da sobrancelha em ponta: estreita perto do canto de fora e termina num ponto um pouco além dele
+  const mid = up.map((p, i) => ({ x: (p.x + low[i].x) / 2, y: (p.y + low[i].y) / 2 }));
+  const afina = [0.35, 0.8, 1, 1, 1];
+  up = up.map((p, i) => ({ x: mid[i].x + (p.x - mid[i].x) * afina[i], y: mid[i].y + (p.y - mid[i].y) * afina[i] }));
+  low = low.map((p, i) => ({ x: mid[i].x + (p.x - mid[i].x) * afina[i], y: mid[i].y + (p.y - mid[i].y) * afina[i] }));
+  const ponta = { x: mid[0].x + (mid[0].x - mid[1].x) * 0.45, y: mid[0].y + (mid[0].y - mid[1].y) * 0.45 + (low[0].y - up[0].y) * 0.15 };
+  up.unshift(ponta); low.unshift(ponta);
   const [r, g, b] = cor, I = cfg.int;
 
   if (cfg.po > 0) { // preenchimento suave tipo nanopigmentação
@@ -244,7 +251,7 @@ function desenharSobrancelha(lm, idx, cfg, escala, cor) {
     grad.addColorStop(0.6, `rgba(${cr},${cg},${cb},${alfa * 0.7})`);
     grad.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
     ctx.strokeStyle = grad;
-    ctx.lineWidth = Math.max(0.45, escala * (0.0011 + rand() * 0.0008));
+    ctx.lineWidth = Math.max(0.55, escala * (0.0013 + rand() * 0.0009));
     ctx.beginPath(); ctx.moveTo(base.x, base.y);
     ctx.quadraticCurveTo(base.x + dx * L * 0.5 - dy * curv, base.y + dy * L * 0.5 + dx * curv, base.x + dx * L, base.y + dy * L);
     ctx.stroke();
