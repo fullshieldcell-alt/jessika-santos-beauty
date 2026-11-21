@@ -69,6 +69,8 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
   .chips{display:flex;gap:6px}
   .chips button{flex:1;font-family:var(--f-corpo);font-size:13px;padding:10px 4px;border-radius:2px;border:1px solid rgba(251,248,244,.7);background:rgba(35,37,28,.35);color:var(--papel);cursor:pointer}
   .chips button[aria-pressed=true]{background:var(--papel);color:var(--musgo);border-color:var(--papel)}
+  .desc-mob{color:var(--papel);font-size:13px;line-height:1.4;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .desc-mob b{font-family:var(--f-display);font-weight:400;font-size:16px;display:block}
   .ctl-linha{display:flex;align-items:center;gap:10px}
   .ctl-linha input{flex:1;accent-color:var(--papel)}
   .ctl-linha .comparar{width:auto;flex:none;font-size:13px;padding:10px 14px;color:var(--papel);border-color:var(--papel);background:rgba(35,37,28,.35)}
@@ -104,6 +106,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
           <button type="button" data-proto="essence" aria-pressed="false">Essence</button>
           <button type="button" data-proto="signature" aria-pressed="false">Signature</button>
         </div>
+        <p class="desc-mob" id="descMob" aria-live="polite"></p>
         <div class="ctl-linha">
           <input id="intMob" type="range" min="20" max="100" value="65" aria-label="Intensidade">
           <button class="btn comparar" id="compararMob" type="button">Segure: antes</button>
@@ -330,11 +333,18 @@ const ligar = v => { estado.antes = v; redesenharFoto(); };
   cmp.addEventListener('keyup', () => ligar(false));
 });
 // botões sobre a câmera (celular) e lista lateral (computador) ficam sincronizados
-function marcarChips(v) { document.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.proto === v))); }
+const DESC = {
+  revival: ['Brow Revival™', 'Regeneração com microagulhamento e exossomos. Estimula fios novos e mais densos, preenchendo as falhas.'],
+  essence: ['Brow Essence™', 'Brow lamination. Alinha e direciona os fios naturais para cima, deixando a sobrancelha mais cheia.'],
+  signature: ['Brow Signature™', 'Nanopigmentação. Desenho fio a fio mais definido, que dura e continua natural.']
+};
+function marcarChips(v) {
+  $('descMob').innerHTML = `<b>${DESC[v][0]}</b>${DESC[v][1]}`; document.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.proto === v))); }
 document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
   document.querySelector(`input[name=proto][value=${b.dataset.proto}]`).checked = true; marcarChips(b.dataset.proto); redesenharFoto();
 }));
 document.querySelectorAll('input[name=proto]').forEach(i => i.addEventListener('change', () => marcarChips(i.value)));
+marcarChips('revival');
 $('intMob').addEventListener('input', () => { $('intensidade').value = $('intMob').value; redesenharFoto(); });
 $('intensidade').addEventListener('input', () => { $('intMob').value = $('intensidade').value; });
 
