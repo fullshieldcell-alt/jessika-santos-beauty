@@ -60,6 +60,9 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
 .nota{font-size:13px;color:var(--nevoa)}
 .erro{font-size:14px;color:#8a2c1d;background:#fbebeb;padding:10px 12px;border-radius:2px}
 .erro[hidden]{display:none}
+.aviso-sim{margin-top:12px;border:1px solid var(--champanhe);background:var(--papel);padding:14px 16px;border-radius:2px;display:grid;gap:4px}
+.aviso-sim b{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--champanhe)}
+.aviso-sim p{font-size:14px;color:var(--tinta);line-height:1.45}
 .ctl{display:none}
 @media (max-width:820px){
   main{grid-template-columns:1fr;padding-top:12px}
@@ -116,6 +119,10 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
     </div>
     <input id="arquivo" type="file" accept="image/*" hidden>
     <p class="erro" id="erro" hidden></p>
+    <div class="aviso-sim" role="note">
+      <b>Simulação ilustrativa</b>
+      <p>A imagem é uma prévia gerada no seu aparelho, apenas para referência, e não representa uma promessa de resultado. O resultado real depende da avaliação dos seus fios, da sua pele e do seu histórico, feita pessoalmente com a Jéssika.</p>
+    </div>
   </div>
 
   <div class="painel">
@@ -147,7 +154,6 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.6vw,46px)
         <button class="btn" id="foto" type="button" disabled>Congelar imagem</button>
         <a class="btn cheio" href="https://wa.me/message/BMGJPKORBIFJM1">Quero esse resultado</a>
       </div>
-      <p class="nota">Simulação ilustrativa feita no seu aparelho. O resultado real depende da avaliação dos seus fios e da sua pele com a Jéssika.</p>
     </div>
   </div>
 </main>
@@ -297,7 +303,7 @@ function desenhar(fonte, lm) {
     }
   }
   ctx.restore();
-  $('rotulo').hidden = !lm; $('rotulo').textContent = estado.antes ? 'Antes' : 'Simulação';
+  $('rotulo').hidden = !lm; $('rotulo').textContent = estado.antes ? 'Antes' : 'Simulação ilustrativa';
 }
 
 let ultimo = -1;
