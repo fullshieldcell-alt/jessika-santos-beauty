@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jéssika Santos Beauty</title>
 <meta name="description" content="Estúdio de sobrancelhas e estética regenerativa em Tambaú, SP. Protocolos exclusivos de sobrancelhas, lábios, pele, laser e corpo.">
-<link rel="icon" type="image/png" href="img/logo-icone.png">
-<link rel="apple-touch-icon" href="img/logo-icone.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icon-512.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BeautySalon", "name": "Jéssika Santos Beauty", "url": "https://jessikasantosbeauty.com.br/", "logo": "https://jessikasantosbeauty.com.br/img/icon-512.png", "image": "https://jessikasantosbeauty.com.br/img/compartilhar.jpg", "telephone": "+55 19 99308-3393", "address": {"@type": "PostalAddress", "streetAddress": "Rua Doutor Delduque Vieira Palma, 41A", "addressLocality": "Tambaú", "addressRegion": "SP", "postalCode": "13710-081", "addressCountry": "BR"}, "sameAs": ["https://www.instagram.com/jessikasantosbeauty/"]}</script>
 <meta name="theme-color" content="#4E5534">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jessikasantosbeauty.com.br/">
@@ -278,6 +281,22 @@ footer .marca .nome small{color:var(--champanhe)}
   .credito{flex-direction:column;align-items:center;text-align:center;gap:6px;margin-top:32px}
 }
 @media (max-width:480px){.casos-nota{grid-column:auto}}
+
+/* avaliações do Google */
+.avaliacoes-topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;border-top:1px solid var(--tinta);padding-top:32px;margin-bottom:40px}
+.nota-google{display:flex;align-items:center;gap:16px;margin-top:10px}
+.num-nota{font-family:var(--f-display);font-size:clamp(56px,7vw,88px);line-height:1;color:var(--musgo)}
+.nota-sub{font-size:15px;color:var(--nevoa);margin-top:6px}
+.estrelas{display:inline-flex;gap:3px}
+.estrelas svg{width:18px;height:18px;fill:var(--champanhe)}
+.nota-google .estrelas svg{width:24px;height:24px}
+.depos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
+.depo{border-top:1px solid var(--linho);padding-top:20px;display:flex;flex-direction:column;gap:14px}
+.depo blockquote{font-family:var(--f-display);font-size:19px;line-height:1.45;color:var(--tinta)}
+.depo figcaption{font-size:14px;font-weight:500;color:var(--tinta)}
+.depo figcaption span{font-weight:400;color:var(--nevoa)}
+@media (max-width:1000px){.depos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.depos{grid-template-columns:1fr;gap:28px}}
 </style>
 </head>
 <body>
@@ -296,6 +315,7 @@ footer .marca .nome small{color:var(--champanhe)}
         <li><a href="#colecoes">Coleções</a></li>
         <li><a href="#metodo">Design Estrutural</a></li>
         <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
         <li><a href="#agendar">Contato</a></li>
       </ul>
     </nav>
@@ -652,8 +672,55 @@ footer .marca .nome small{color:var(--champanhe)}
     </div>
   </section>
 
-  <section style="padding-top:0">
+  <section id="avaliacoes" style="padding-top:0">
     <div class="wrap">
+      <div class="avaliacoes-topo">
+        <div>
+          <p class="etq">Avaliações no Google</p>
+          <p class="nota-google"><span class="num-nota">4,9</span><span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span></p>
+          <p class="nota-sub">Média de 41 avaliações de clientes do estúdio</p>
+        </div>
+        <div class="btns">
+          <a class="btn" href="https://share.google/0uDtZsLvPwU5Wymnh">Ver todas no Google</a>
+        </div>
+      </div>
+      <div class="depos">
+        <figure class="depo">
+          <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span>
+          <blockquote>Atendimento e recepção maravilhosa, profissional incrível. Me senti muito a vontade com o procedimento, e na minha escala de dor, foi super suportável, diria que quase indolor. Amei a experiência, voltarei muitas vezes.</blockquote>
+          <figcaption>Maria M. <span>· Google</span></figcaption>
+        </figure>
+        <figure class="depo">
+          <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span>
+          <blockquote>Profissional excelente. Pontual, gentil, acolhedora, entregou mais do que prometeu, produtos de primeiríssima qualidade, a pele ficou um veludo.</blockquote>
+          <figcaption>Carla T. <span>· Google</span></figcaption>
+        </figure>
+        <figure class="depo">
+          <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span>
+          <blockquote>Fui muito bem atendida, sempre no horário marcado. Muito atenciosa, tira todas as minhas dúvidas em relação ao procedimento.</blockquote>
+          <figcaption>Aline G. <span>· Google</span></figcaption>
+        </figure>
+        <figure class="depo">
+          <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span>
+          <blockquote>Uma ótima profissional, um trabalho excelente e extremamente cuidadosa e gentil com o público.</blockquote>
+          <figcaption>Eduarda T. <span>· Google</span></figcaption>
+        </figure>
+        <figure class="depo">
+          <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span>
+          <blockquote>Foi muito bom ser atendida por essa profissional, uma pessoa alegre e educada. Minha hidratação facial foi perfeita.</blockquote>
+          <figcaption>Rosangela V. <span>· Google</span></figcaption>
+        </figure>
+        <figure class="depo">
+          <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span>
+          <blockquote>Ótimo atendimento e o trabalho impecável! Super indico.</blockquote>
+          <figcaption>Ana Caroline B. <span>· Google</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+<div class="wrap">
       <div class="parcela">
         <p class="num"><span class="conta" data-fim="36">36</span><span>x</span></p>
         <div>
@@ -678,7 +745,7 @@ footer .marca .nome small{color:var(--champanhe)}
       </div>
       <div class="contatos">
         <div><span class="etq">WhatsApp</span><a href="https://wa.me/message/BMGJPKORBIFJM1">(19) 99308-3393</a></div>
-        <div><span class="etq">Endereço</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Doutor+Delduque+Vieira+Palma+41+Tamba%C3%BA+SP">Rua Doutor Delduque Vieira Palma, 41<br>Tambaú, SP, 13710-000</a></div>
+        <div><span class="etq">Endereço</span><a href="https://share.google/0uDtZsLvPwU5Wymnh">Rua Doutor Delduque Vieira Palma, 41A<br>Tambaú, SP, 13710-081</a></div>
         <div><span class="etq">Instagram</span><a href="https://www.instagram.com/jessikasantosbeauty/">@jessikasantosbeauty</a></div>
         <div><span class="etq">Pagamento</span><span>Pix, cartão e boleto em até 36x</span></div>
         <div><span class="etq">Cursos</span><span>Turmas e mentorias sob consulta</span></div>
@@ -734,7 +801,7 @@ footer .marca .nome small{color:var(--champanhe)}
     var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduz || !('IntersectionObserver' in window)) return;
     document.documentElement.classList.add('anima');
-    var alvos = document.querySelectorAll('.cab-secao, .sobre > div, .estudio > *, .prot, .caso, .metodo-txt > *, .parcela, .agendar > div, .contatos > div');
+    var alvos = document.querySelectorAll('.cab-secao, .sobre > div, .estudio > *, .depo, .avaliacoes-topo, .prot, .caso, .metodo-txt > *, .parcela, .agendar > div, .contatos > div');
     alvos.forEach(function (el, i) {
       if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('surge'); el.style.transitionDelay = (i % 4) * 0.08 + 's'; }
     });
