@@ -206,9 +206,15 @@ function corDosFios(up, low) {
   return [Math.round(r * esc), Math.round(g * esc), Math.round(b * esc)];
 }
 
-function desenharSobrancelha(lm, idx, cfg, escala, cor) {
+function ajusta(p, q, h, lado) {
+  const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2, dx = p.x - q.x, dy = p.y - q.y, d = Math.hypot(dx, dy) || 1;
+  return { x: mx + lado * dx / d * h / 2, y: my + lado * dy / d * h / 2 };
+}
+function desenharSobrancelha(lm, idx, cfg, escala, cor, esp) {
   const P = i => ({ x: lm[i].x * tela.width, y: lm[i].y * tela.height });
   let up = BROWS[idx].up.map(P), low = BROWS[idx].low.map(P);
+  // mesma espessura nas duas sobrancelhas (média das duas), para o resultado sair simétrico
+  [up, low] = [up.map((p, i) => ajusta(p, low[i], esp[i], 1)), low.map((q, i) => ajusta(up[i], q, esp[i], -1))];
   // engrossa para cima conforme o protocolo
   const cresce = cfg.cresce;
   // engrossa para baixo (mais) e um pouco para cima
@@ -232,7 +238,7 @@ function desenharSobrancelha(lm, idx, cfg, escala, cor) {
     ctx.fillStyle = `rgba(${r},${g},${b},${cfg.po * I})`; ctx.fill(); ctx.restore();
   }
 
-  const rand = rng(idx ? 9173 : 4211), n = Math.round(cfg.fios * I);
+  const rand = rng(4211), n = Math.round(cfg.fios * I);
   ctx.lineCap = 'round';
   for (let k = 0; k < n; k++) {
     const t = Math.pow(rand(), 0.75), v = rand();   // concentra mais fios no início               // t: de fora (0) para dentro (1); v: de baixo para cima
@@ -278,6 +284,8 @@ function desenhar(fonte, lm) {
     const proto = document.querySelector('input[name=proto]:checked').value;
     const cfg = { ...PROTOS[proto], int: $('intensidade').value / 100 };
     const escala = Math.hypot((lm[EYE_L].x - lm[EYE_R].x) * w, (lm[EYE_L].y - lm[EYE_R].y) * h) * 2.2;
+    const alt = b => BROWS[b].up.map((j, k) => Math.hypot((lm[j].x - lm[BROWS[b].low[k]].x) * w, (lm[j].y - lm[BROWS[b].low[k]].y) * h));
+    const a0 = alt(0), a1 = alt(1), esp = a0.map((v, k) => (v + a1[k]) / 2);
     for (let i = 0; i < 2; i++) {
       const P = j => ({ x: lm[j].x * w, y: lm[j].y * h });
       // a cor é lida com a imagem já desenhada; em modo espelho a leitura usa as coordenadas reais da tela
@@ -285,7 +293,7 @@ function desenhar(fonte, lm) {
       const m = p => espelho ? { x: w - p.x, y: p.y } : p;
       const cor = corDosFios(BROWS[i].up.map(P).map(m), BROWS[i].low.map(P).map(m));
       ctx.restore();
-      desenharSobrancelha(lm, i, cfg, escala, cor);
+      desenharSobrancelha(lm, i, cfg, escala, cor, esp);
     }
   }
   ctx.restore();
